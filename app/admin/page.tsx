@@ -2,6 +2,8 @@ export const dynamic = "force-dynamic";
 
 import { supabase } from "@/lib/supabase";
 
+import Image from "next/image";
+
 export default async function AdminPage() {
   const { data: puppies } = await supabase
     .from("puppies")
