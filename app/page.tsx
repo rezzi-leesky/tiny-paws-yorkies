@@ -400,7 +400,7 @@ textAlign: "center",
     right: "20px",
     backgroundColor: "#25D366",
     color: "white",
-    padding: "14px 20px";
+    padding: "14px 20px",
       borderRadius: "8px",
 textDecoration: "none",
 display: "inline-block",
