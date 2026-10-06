@@ -214,7 +214,7 @@ textAlign: "center",
 
         <p
           style={{
-            backgroundImage: "url('/images/puppy1.jpg')",
+            backgroundImage: "url('/images/puppy4.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -256,35 +256,39 @@ textAlign: "center",
               marginTop: "30px",
             }}
           >
-            {[1, 2, 3].map((puppy) => (
-              <div
-                key={puppy}
+          {[
+  { name: "Bella", age: "10 Weeks", price: "$1200" },
+  { name: "Max", age: "11 Weeks", price: "$1100" },
+  { name: "Luna", age: "9 Weeks", price: "$1300" },
 
-                style={{
-                  backgroundColor: "#ffffff",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                }}
-              >
-                <div
-                  style={{
-                    height: "220px",
-                    backgroundColor: "#d1d5db",
-                  }}
-                />
+          
+].
+            {puppies?.map((puppy) => (
+  <div
+    key={puppy.id}
+    style={{
+      background: "#fff",
+      borderRadius: "16px",
+      overflow: "hidden",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+      width: "300px",
+    }}
+  >
+    <img
+      src={puppy.image_url}
+      alt={puppy.name}
+      style={{
+        width: "100%",
+        height: "220px",
+        objectFit: "cover",
+</p>
 
-                <div style={{ padding: "20px" }}>
-                  <h3>Yorkie Puppy #{puppy}</h3>
-
-                  <p>
-                    CKC/AKC Quality • Vet Checked • Vaccinations Current
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      <p>
+        CKC/AKC Quality • Vet Checked • Vaccinations Current
+      </p>
+    </div>
+  </div>
+))}
       </section>
 
       <section
