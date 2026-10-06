@@ -256,7 +256,6 @@ textAlign: "center",
               marginTop: "30px",
             }}
           >
-          {[
             
             {puppies?.map((puppy) => (
   <div
