@@ -366,7 +366,7 @@ textAlign: "center",
           Email: info@tinypawsyorkies.com
         </p>
 
-        <p>Phone: (237) 679409897</p>
+        <p>Phone: +237679409897</p>
 
         <button
           style={{
@@ -390,6 +390,19 @@ textAlign: "center",
           <p key={puppy.id}>{puppy.name}</p>
         ))}
       </div>
+<a
+  href="https://wa.me/237679409897"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    backgroundColor: "#25D366",
+    color: "white",
+    padding: "
+
+    
     </main>
   );
 }
