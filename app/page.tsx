@@ -400,7 +400,7 @@ textAlign: "center",
     right: "20px",
     backgroundColor: "#25D366",
     color: "white",
-    padding: "
+    padding: "14px 20px"
 
     
     </main>
