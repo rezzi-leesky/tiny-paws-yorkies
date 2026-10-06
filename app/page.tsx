@@ -260,7 +260,7 @@ textAlign: "center",
   { name: "Bella", age: "10 Weeks", price: "$1200" },
   { name: "Max", age: "11 Weeks", price: "$1100" },
   { name: "Luna", age: "9 Weeks", price: "$1300" },
-
+];
             {puppies?.map((puppy) => (
   <div
     key={puppy.id}
