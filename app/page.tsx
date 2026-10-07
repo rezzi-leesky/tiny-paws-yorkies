@@ -302,8 +302,160 @@ export default async function Home() {
           <div style={{ ...subtitleStyle, color: "#cbd5e0" }}>Each puppy is bred for health, temperament, and beauty</div>
 
           {puppyList.length === 0 ? (
-            <div style={{ textAlign: "center", color: "#cbd5e0", fontSize: "clamp(16px, 3vw, 18px)", padding: "clamp(40px, 8vw, 60px) 20px" }}>
-              Check back soon for our latest litter!
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                gap: "clamp(20px, 4vw, 32px)",
+                marginTop: "clamp(30px, 6vw, 40px)",
+              }}
+            >
+              <article style={puppyCardStyle}>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "clamp(220px, 50vw, 280px)",
+                    overflow: "hidden",
+                    backgroundColor: "#e2e8f0",
+                    backgroundImage: "url('/images/luna/photo_1_2026-10-07_10-46-30.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      right: "12px",
+                      backgroundColor: "#48bb78",
+                      color: "#ffffff",
+                      padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
+                      borderRadius: "20px",
+                      fontSize: "clamp(12px, 1.5vw, 14px)",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    ✓ Available
+                  </div>
+                </div>
+
+                <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
+                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
+                    Luna
+                  </h3>
+                  <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
+                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
+                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> 8 weeks
+                    </p>
+                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
+                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> Contact for quote
+                    </p>
+                  </div>
+                  <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
+                    ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
+                  </p>
+                </div>
+              </article>
+
+              <article style={puppyCardStyle}>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "clamp(220px, 50vw, 280px)",
+                    overflow: "hidden",
+                    backgroundColor: "#e2e8f0",
+                    backgroundImage: "url('/images/max/photo_1_2026-10-07_10-50-35.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      right: "12px",
+                      backgroundColor: "#48bb78",
+                      color: "#ffffff",
+                      padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
+                      borderRadius: "20px",
+                      fontSize: "clamp(12px, 1.5vw, 14px)",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    ✓ Available
+                  </div>
+                </div>
+
+                <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
+                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
+                    Max
+                  </h3>
+                  <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
+                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
+                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> 8 weeks
+                    </p>
+                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
+                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> Contact for quote
+                    </p>
+                  </div>
+                  <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
+                    ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
+                  </p>
+                </div>
+              </article>
+
+              <article style={puppyCardStyle}>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "clamp(220px, 50vw, 280px)",
+                    overflow: "hidden",
+                    backgroundColor: "#e2e8f0",
+                    backgroundImage: "url('/images/bella/photo_4_2026-10-07_10-32-46.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      right: "12px",
+                      backgroundColor: "#48bb78",
+                      color: "#ffffff",
+                      padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
+                      borderRadius: "20px",
+                      fontSize: "clamp(12px, 1.5vw, 14px)",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    ✓ Available
+                  </div>
+                </div>
+
+                <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
+                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
+                    Bella
+                  </h3>
+                  <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
+                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
+                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> 8 weeks
+                    </p>
+                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
+                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> Contact for quote
+                    </p>
+                  </div>
+                  <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
+                    ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
+                  </p>
+                </div>
+              </article>
             </div>
           ) : (
             <div
