@@ -267,17 +267,9 @@ textAlign: "center",
       boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
       width: "300px",
     }}
-  >
-    <img
-      src={puppy.image_url}
-      alt={puppy.name}
-      style={{
-        width: "100%",
-        height: "220px",
-        objectFit: "cover",
-</p>
-
-      <p>
+    ></div>
+  {puppy.image_url} <p style={{ height: "220px", objectFit: "cover" }} >
+    
         CKC/AKC Quality • Vet Checked • Vaccinations Current
       </p>
     </div>
