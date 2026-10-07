@@ -7,7 +7,6 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-// Luna images
 const lunaImages = [
   "/images/luna/photo_1_2026-10-07_10-46-30.jpg",
   "/images/luna/photo_2_2026-10-07_10-46-30.jpg",
@@ -16,7 +15,6 @@ const lunaImages = [
   "/images/luna/photo_5_2026-10-07_10-46-30.jpg",
 ];
 
-// Max images
 const maxImages = [
   "/images/max/photo_1_2026-10-07_10-50-35.jpg",
   "/images/max/photo_2_2026-10-07_10-50-35.jpg",
@@ -25,46 +23,18 @@ const maxImages = [
   "/images/max/photo_5_2026-10-07_10-50-35.jpg",
 ];
 
-// Bella images
 const bellaImages = [
   "/images/bella/photo_4_2026-10-07_10-32-46.jpg",
 ];
 
 const linkStyle: CSSProperties = {
-  color: "#ffffff",
+  color: "#f7f1e6",
   textDecoration: "none",
-  marginLeft: "clamp(12px, 3vw, 28px)",
+  marginLeft: "clamp(12px, 2vw, 28px)",
   fontWeight: 600,
-  fontSize: "clamp(14px, 2vw, 16px)",
-};
-
-const testimonialStyle: CSSProperties = {
-  backgroundColor: "#ffffff",
-  padding: "clamp(20px, 5vw, 32px)",
-  borderRadius: "16px",
-  boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-  fontSize: "clamp(1rem, 2vw, 1.1rem)",
-  lineHeight: 1.8,
-  fontStyle: "italic",
-  color: "#2d3748",
-  borderLeft: "4px solid #d4a574",
-};
-
-const sectionTitleStyle: CSSProperties = {
-  fontSize: "clamp(2rem, 7vw, 3rem)",
-  fontWeight: 700,
-  marginBottom: "16px",
-  textAlign: "center",
-  color: "#1a202c",
-  letterSpacing: "-0.5px",
-};
-
-const subtitleStyle: CSSProperties = {
-  fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-  textAlign: "center",
-  color: "#718096",
-  margin: "0 auto clamp(30px, 8vw, 48px)",
-  maxWidth: "600px",
+  letterSpacing: "0.04em",
+  fontSize: "clamp(0.82rem, 1.6vw, 0.96rem)",
+  textTransform: "uppercase",
 };
 
 const containerStyle: CSSProperties = {
@@ -74,12 +44,45 @@ const containerStyle: CSSProperties = {
   paddingRight: "20px",
 };
 
-const puppyCardStyle: CSSProperties = {
-  background: "#ffffff",
-  borderRadius: "20px",
+const sectionTitleStyle: CSSProperties = {
+  fontFamily: "Georgia, 'Times New Roman', serif",
+  fontSize: "clamp(2.2rem, 5vw, 3.4rem)",
+  fontWeight: 700,
+  letterSpacing: "-0.04em",
+  margin: "0 0 12px",
+  textAlign: "center",
+  color: "#1d1d1b",
+};
+
+const subtitleStyle: CSSProperties = {
+  fontSize: "clamp(1rem, 2vw, 1.2rem)",
+  textAlign: "center",
+  color: "#5e5a54",
+  maxWidth: "680px",
+  margin: "0 auto",
+  lineHeight: 1.7,
+};
+
+const cardStyle: CSSProperties = {
+  background: "#fffdf9",
+  border: "1px solid rgba(25, 25, 24, 0.08)",
+  borderRadius: "18px",
   overflow: "hidden",
-  boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
-  cursor: "pointer",
+  boxShadow: "0 12px 32px rgba(22, 22, 20, 0.08)",
+};
+
+const classicButtonStyle: CSSProperties = {
+  display: "inline-block",
+  textDecoration: "none",
+  background: "#c9a46d",
+  color: "#1a1a18",
+  padding: "14px 30px",
+  borderRadius: "999px",
+  fontWeight: 700,
+  letterSpacing: "0.04em",
+  textTransform: "uppercase",
+  fontSize: "0.82rem",
+  boxShadow: "0 12px 22px rgba(201, 164, 109, 0.25)",
 };
 
 export default async function Home() {
@@ -88,7 +91,7 @@ export default async function Home() {
   if (error) {
     return (
       <main style={{ padding: "40px 20px", textAlign: "center" }}>
-        <p style={{ color: "#e53e3e", fontSize: "18px" }}>Error loading puppies: {error.message}</p>
+        <p style={{ color: "#8b1e1e", fontSize: "18px" }}>Error loading puppies: {error.message}</p>
       </main>
     );
   }
@@ -98,30 +101,27 @@ export default async function Home() {
   const getPuppyImage = (puppyName: string, index: number) => {
     const name = puppyName?.toLowerCase() || "";
 
-    if (name.includes("luna")) {
-      return lunaImages[index % lunaImages.length];
-    }
-    if (name.includes("max")) {
-      return maxImages[index % maxImages.length];
-    }
-    if (name.includes("bella")) {
-      return bellaImages[index % bellaImages.length];
-    }
+    if (name.includes("luna")) return lunaImages[index % lunaImages.length];
+    if (name.includes("max")) return maxImages[index % maxImages.length];
+    if (name.includes("bella")) return bellaImages[index % bellaImages.length];
 
     return lunaImages[index % lunaImages.length];
   };
 
   return (
-    <main style={{ fontFamily: "'Segoe UI', 'Trebuchet MS', sans-serif", background: "#fafaf9", color: "#1a202c" }}>
+    <main
+      style={{
+        fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif",
+        background: "#f4f0ea",
+        color: "#1d1d1b",
+      }}
+    >
       <header
         style={{
-          backgroundColor: "#1a202c",
-          color: "#ffffff",
-          padding: "clamp(16px, 4vw, 24px) clamp(20px, 5vw, 40px)",
-          position: "sticky",
-          top: 0,
-          zIndex: 100,
-          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+          backgroundColor: "#171614",
+          color: "#f7f1e6",
+          padding: "18px 20px",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
         }}
       >
         <div
@@ -130,15 +130,22 @@ export default async function Home() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "clamp(12px, 3vw, 20px)",
+            gap: "16px",
             flexWrap: "wrap",
           }}
         >
-          <h2 style={{ margin: 0, fontSize: "clamp(20px, 5vw, 28px)", fontWeight: 700, letterSpacing: "0.5px" }}>
-            ✨ Tiny Paws Yorkies
+          <h2
+            style={{
+              margin: 0,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontSize: "clamp(1.5rem, 3vw, 2rem)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Tiny Paws Yorkies
           </h2>
 
-          <nav aria-label="Main navigation" style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)" }}>
+          <nav aria-label="Main navigation" style={{ display: "flex", flexWrap: "wrap" }}>
             {navItems.map((item) => (
               <a key={item.href} href={item.href} style={linkStyle}>
                 {item.label}
@@ -150,136 +157,150 @@ export default async function Home() {
 
       <section
         style={{
-          backgroundImage: "linear-gradient(135deg, rgba(26, 32, 44, 0.7) 0%, rgba(107, 114, 128, 0.6) 100%), url('/images/luna/photo_1_2026-10-07_10-46-30.jpg')",
+          backgroundImage:
+            "linear-gradient(135deg, rgba(17,15,13,0.68) 0%, rgba(67,58,49,0.52) 100%), url('/images/luna/photo_1_2026-10-07_10-46-30.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          minHeight: "clamp(500px, 80vh, 750px)",
+          minHeight: "680px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          position: "relative",
         }}
       >
-        <div style={{ position: "relative", zIndex: 1, color: "white", maxWidth: "900px", padding: "clamp(30px, 5vw, 40px)" }}>
-          <h1
-            style={{
-              fontSize: "clamp(2rem, 8vw, 5rem)",
-              fontWeight: 800,
-              margin: "0 0 clamp(16px, 4vw, 24px) 0",
-              lineHeight: 1.1,
-              letterSpacing: "-1px",
-            }}
-          >
-            Premium Yorkshire Terrier Puppies
-          </h1>
-
-          <p
-            style={{
-              fontSize: "clamp(1rem, 3vw, 1.8rem)",
-              marginTop: "clamp(16px, 3vw, 20px)",
-              marginBottom: "clamp(30px, 5vw, 40px)",
-              fontWeight: 300,
-              opacity: 0.95,
-            }}
-          >
-            Exceptionally bred, health-certified, and raised with premium care
-          </p>
-
-          <a
-            href="#puppies"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#d4a574",
-              color: "#1a202c",
-              padding: "clamp(12px, 3vw, 16px) clamp(30px, 5vw, 48px)",
-              borderRadius: "50px",
-              textDecoration: "none",
-              fontWeight: 700,
-              fontSize: "clamp(14px, 2vw, 18px)",
-              boxShadow: "0 8px 24px rgba(212, 165, 116, 0.3)",
-              border: "2px solid #d4a574",
-            }}
-          >
-            Explore Our Puppies
-          </a>
+        <div style={{ ...containerStyle, color: "#fffdf9", paddingTop: "40px", paddingBottom: "40px" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+            <p
+              style={{
+                margin: "0 0 18px",
+                fontSize: "0.8rem",
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "#e6d7b5",
+              }}
+            >
+              Premium Yorkshire Terrier Breeders
+            </p>
+            <h1
+              style={{
+                margin: "0 0 18px",
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+                lineHeight: 1.08,
+                letterSpacing: "-0.05em",
+                fontWeight: 700,
+              }}
+            >
+              Beautiful puppies for forever homes.
+            </h1>
+            <p
+              style={{
+                fontSize: "clamp(1.02rem, 2vw, 1.5rem)",
+                lineHeight: 1.7,
+                maxWidth: "720px",
+                margin: "0 auto 28px",
+                color: "rgba(255,255,255,0.88)",
+              }}
+            >
+              Healthy, lovingly raised Yorkshire Terriers with exceptional temperament, care, and pedigree.
+            </p>
+            <a href="#puppies" style={classicButtonStyle}>
+              Explore our puppies
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="about" style={{ padding: "clamp(60px, 12vw, 120px) 20px", backgroundColor: "#ffffff" }}>
+      <section id="about" style={{ background: "#fbf8f4", padding: "90px 20px" }}>
         <div style={containerStyle}>
-          <h2 style={sectionTitleStyle}>About Tiny Paws Yorkies</h2>
-          <div style={subtitleStyle}>Dedicated to excellence in Yorkshire Terrier breeding</div>
+          <h2 style={sectionTitleStyle}>A classic approach to thoughtful breeding</h2>
+          <p style={subtitleStyle}>
+            At Tiny Paws Yorkies, we believe the best puppies are raised with patience, care, and a deep commitment to health and temperament.
+          </p>
 
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "clamp(24px, 5vw, 48px)",
+              gap: "36px",
               alignItems: "center",
-              marginTop: "clamp(40px, 8vw, 60px)",
+              marginTop: "42px",
             }}
           >
             <div
               style={{
+                minHeight: "360px",
+                borderRadius: "20px",
                 backgroundImage: "url('/images/bella/photo_4_2026-10-07_10-32-46.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                minHeight: "300px",
-                borderRadius: "20px",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+                boxShadow: "0 20px 50px rgba(32,35,28,0.18)",
               }}
             />
 
-            <div>
-              <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.15rem)", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
-                At Tiny Paws Yorkies, we're passionate about breeding exceptional Yorkshire Terriers with perfect health, vibrant temperament, and beautiful conformation.
-              </p>
-              <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.15rem)", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
-                Every puppy is born from champion bloodlines, vet-checked from day one, vaccinated, microchipped, and given early socialization to ensure they're ready for their forever families.
-              </p>
-              <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.15rem)", lineHeight: 1.9, color: "#4a5568" }}>
-                We provide lifetime breeder support and a health guarantee because we stand behind every puppy we raise.
-              </p>
+            <div style={{ display: "grid", gap: "22px" }}>
+              {[
+                "Each puppy is raised in a nurturing home environment with gentle socialization from day one.",
+                "We prioritize the health, temperament, and structure of every Yorkie, ensuring our families receive a confident and happy companion.",
+                "From early veterinary care to lifetime breeder support, we stand beside our families long after adoption.",
+              ].map((text, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    ...cardStyle,
+                    padding: "22px 24px",
+                    borderLeft: "4px solid #c9a46d",
+                  }}
+                >
+                  <p style={{ margin: 0, color: "#433f3a", lineHeight: 1.8, fontSize: "1.02rem" }}>{text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section style={{ padding: "clamp(60px, 12vw, 120px) 20px", backgroundColor: "#f7fafc" }}>
+      <section style={{ background: "#f0e7dc", padding: "90px 20px" }}>
         <div style={containerStyle}>
-          <h2 style={sectionTitleStyle}>Why Choose Tiny Paws Yorkies</h2>
+          <h2 style={sectionTitleStyle}>Why families choose us</h2>
 
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "clamp(20px, 4vw, 32px)",
-              marginTop: "clamp(40px, 8vw, 60px)",
+              gap: "24px",
+              marginTop: "40px",
             }}
           >
             {[
-              { icon: "🏆", title: "Champion Bloodlines", desc: "Puppies from award-winning parents" },
-              { icon: "💉", title: "Health Guaranteed", desc: "Full vet checks and current vaccinations" },
-              { icon: "🤝", title: "Lifetime Support", desc: "Breeder guidance for life" },
-              { icon: "👶", title: "Early Socialization", desc: "Puppies ready to bond immediately" },
-              { icon: "🏠", title: "Loving Environment", desc: "Raised in our family home" },
-              { icon: "📋", title: "Certified Quality", desc: "CKC & AKC registered" },
-            ].map((item, idx) => (
+              { icon: "🏆", title: "Champion Bloodlines", desc: "Thoughtful genetics and excellent lineage" },
+              { icon: "💉", title: "Health First", desc: "Vet checked, vaccinated, and well cared for" },
+              { icon: "🤝", title: "Lifetime Support", desc: "Guidance and care for the long term" },
+              { icon: "👶", title: "Socialized Early", desc: "Raised to be confident and adaptable" },
+              { icon: "🏠", title: "Home Environment", desc: "Warm, calm, and family-centered upbringing" },
+              { icon: "📋", title: "Certified Quality", desc: "Meticulous breeding standards and care" },
+            ].map((item) => (
               <div
-                key={idx}
+                key={item.title}
                 style={{
-                  background: "#ffffff",
-                  padding: "clamp(20px, 5vw, 32px)",
-                  borderRadius: "16px",
+                  ...cardStyle,
+                  padding: "28px 20px",
                   textAlign: "center",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
                 }}
               >
-                <div style={{ fontSize: "clamp(32px, 8vw, 48px)", marginBottom: "16px" }}>{item.icon}</div>
-                <h3 style={{ fontSize: "clamp(1rem, 2vw, 1.3rem)", fontWeight: 700, marginBottom: "12px", color: "#1a202c" }}>{item.title}</h3>
-                <p style={{ color: "#718096", fontSize: "clamp(0.9rem, 1.8vw, 1rem)", lineHeight: 1.6 }}>{item.desc}</p>
+                <div style={{ fontSize: "2.4rem", marginBottom: "10px" }}>{item.icon}</div>
+                <h3
+                  style={{
+                    margin: "0 0 12px",
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontSize: "1.35rem",
+                    color: "#201f1d",
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p style={{ margin: 0, lineHeight: 1.7, color: "#5f5a56" }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -289,238 +310,93 @@ export default async function Home() {
       <section
         id="puppies"
         style={{
-          backgroundImage: "url('/images/luna/photo_2_2026-10-07_10-46-30.jpg')",
+          backgroundImage:
+            "linear-gradient(135deg, rgba(25,25,24,0.72) 0%, rgba(52,48,44,0.68) 100%), url('/images/luna/photo_2_2026-10-07_10-46-30.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "#2d3748",
-          padding: "clamp(60px, 12vw, 120px) 20px",
+          padding: "90px 20px",
         }}
       >
         <div style={containerStyle}>
-          <h2 style={{ ...sectionTitleStyle, color: "#ffffff" }}>Available Puppies</h2>
-          <div style={{ ...subtitleStyle, color: "#cbd5e0" }}>Each puppy is bred for health, temperament, and beauty</div>
+          <h2 style={{ ...sectionTitleStyle, color: "#fffdf9" }}>Available puppies</h2>
+          <p style={{ ...subtitleStyle, color: "rgba(255,255,255,0.8)" }}>
+            Thoughtfully bred companions ready to join their forever families.
+          </p>
 
           {puppyList.length === 0 ? (
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-                gap: "clamp(20px, 4vw, 32px)",
-                marginTop: "clamp(30px, 6vw, 40px)",
+                marginTop: "26px",
+                padding: "38px 20px",
+                background: "rgba(255,255,255,0.08)",
+                borderRadius: "18px",
+                textAlign: "center",
+                color: "#f7f1e6",
+                fontSize: "1.05rem",
               }}
             >
-              <article style={puppyCardStyle}>
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "clamp(220px, 50vw, 280px)",
-                    overflow: "hidden",
-                    backgroundColor: "#e2e8f0",
-                    backgroundImage: "url('/images/luna/photo_1_2026-10-07_10-46-30.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      right: "12px",
-                      backgroundColor: "#48bb78",
-                      color: "#ffffff",
-                      padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
-                      borderRadius: "20px",
-                      fontSize: "clamp(12px, 1.5vw, 14px)",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    ✓ Available
-                  </div>
-                </div>
-
-                <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
-                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
-                    Luna
-                  </h3>
-                  <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
-                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> 8 weeks
-                    </p>
-                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> Contact for quote
-                    </p>
-                  </div>
-                  <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
-                    ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
-                  </p>
-                </div>
-              </article>
-
-              <article style={puppyCardStyle}>
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "clamp(220px, 50vw, 280px)",
-                    overflow: "hidden",
-                    backgroundColor: "#e2e8f0",
-                    backgroundImage: "url('/images/max/photo_1_2026-10-07_10-50-35.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      right: "12px",
-                      backgroundColor: "#48bb78",
-                      color: "#ffffff",
-                      padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
-                      borderRadius: "20px",
-                      fontSize: "clamp(12px, 1.5vw, 14px)",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    ✓ Available
-                  </div>
-                </div>
-
-                <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
-                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
-                    Max
-                  </h3>
-                  <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
-                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> 8 weeks
-                    </p>
-                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> Contact for quote
-                    </p>
-                  </div>
-                  <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
-                    ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
-                  </p>
-                </div>
-              </article>
-
-              <article style={puppyCardStyle}>
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "clamp(220px, 50vw, 280px)",
-                    overflow: "hidden",
-                    backgroundColor: "#e2e8f0",
-                    backgroundImage: "url('/images/bella/photo_4_2026-10-07_10-32-46.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      right: "12px",
-                      backgroundColor: "#48bb78",
-                      color: "#ffffff",
-                      padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
-                      borderRadius: "20px",
-                      fontSize: "clamp(12px, 1.5vw, 14px)",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    ✓ Available
-                  </div>
-                </div>
-
-                <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
-                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
-                    Bella
-                  </h3>
-                  <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
-                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> 8 weeks
-                    </p>
-                    <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                      <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> Contact for quote
-                    </p>
-                  </div>
-                  <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
-                    ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
-                  </p>
-                </div>
-              </article>
+              Check back soon for our newest litter.
             </div>
           ) : (
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-                gap: "clamp(20px, 4vw, 32px)",
-                marginTop: "clamp(30px, 6vw, 40px)",
+                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+                gap: "26px",
+                marginTop: "36px",
               }}
             >
               {puppyList.map((puppy: any, index: number) => (
-                <article key={puppy.id} style={puppyCardStyle}>
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      height: "clamp(220px, 50vw, 280px)",
-                      overflow: "hidden",
-                      backgroundColor: "#e2e8f0",
-                    }}
-                  >
+                <article key={puppy.id} style={{ ...cardStyle, background: "#fffdf9" }}>
+                  <div style={{ position: "relative", height: "280px", backgroundColor: "#e6dfd3" }}>
                     <img
                       src={getPuppyImage(puppy.name, index)}
                       alt={puppy.name || "Yorkshire Terrier puppy"}
-                      style={{
-                        display: "block",
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                     />
                     <div
                       style={{
                         position: "absolute",
-                        top: "12px",
-                        right: "12px",
-                        backgroundColor: puppy.available ? "#48bb78" : "#f56565",
+                        top: "14px",
+                        right: "14px",
+                        backgroundColor: puppy.available ? "#3d7f59" : "#a25050",
                         color: "#ffffff",
-                        padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
-                        borderRadius: "20px",
-                        fontSize: "clamp(12px, 1.5vw, 14px)",
+                        padding: "8px 14px",
+                        borderRadius: "999px",
+                        fontSize: "0.72rem",
                         fontWeight: 700,
+                        letterSpacing: "0.06em",
                         textTransform: "uppercase",
                       }}
                     >
-                      {puppy.available ? "✓ Available" : "✗ Sold"}
+                      {puppy.available ? "Available" : "Sold"}
                     </div>
                   </div>
 
-                  <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
-                    <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
+                  <div style={{ padding: "22px 20px 24px" }}>
+                    <h3
+                      style={{
+                        margin: "0 0 14px",
+                        fontFamily: "Georgia, 'Times New Roman', serif",
+                        fontSize: "1.9rem",
+                        color: "#1b1a18",
+                      }}
+                    >
                       {puppy.name}
                     </h3>
 
-                    <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
-                      <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                        <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> {puppy.age}
+                    <div style={{ display: "grid", gap: "8px", marginBottom: "14px" }}>
+                      <p style={{ margin: 0, color: "#544f4b", fontSize: "1rem" }}>
+                        <strong style={{ color: "#1b1a18" }}>Age:</strong> {puppy.age}
                       </p>
-                      <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
-                        <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> ${puppy.price?.toLocaleString() || "Contact"}
+                      <p style={{ margin: 0, color: "#544f4b", fontSize: "1rem" }}>
+                        <strong style={{ color: "#1b1a18" }}>Price:</strong> ${puppy.price?.toLocaleString() || "Contact"}
                       </p>
                     </div>
 
-                    <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
-                      ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
+                    <p style={{ margin: 0, color: "#66615d", fontSize: "0.9rem", lineHeight: 1.7, borderTop: "1px solid #ece3d8", paddingTop: "12px" }}>
+                      Health certified • Vaccinated • Microchipped
                     </p>
                   </div>
                 </article>
@@ -530,17 +406,17 @@ export default async function Home() {
         </div>
       </section>
 
-      <section style={{ backgroundColor: "#ffffff", padding: "clamp(60px, 12vw, 120px) 20px" }}>
+      <section style={{ backgroundColor: "#fbf8f4", padding: "90px 20px" }}>
         <div style={containerStyle}>
-          <h2 style={sectionTitleStyle}>Happy Families</h2>
-          <div style={subtitleStyle}>What our families say about their new companions</div>
+          <h2 style={sectionTitleStyle}>Happy families</h2>
+          <p style={subtitleStyle}>The heartfelt trust families place in us is the greatest compliment.</p>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "clamp(20px, 4vw, 32px)",
-              marginTop: "clamp(40px, 8vw, 60px)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "22px",
+              marginTop: "40px",
             }}
           >
             {[
@@ -548,9 +424,9 @@ export default async function Home() {
               "The best decision we made. Tiny Paws Yorkies provided exceptional support throughout the entire process.",
               "Our little Yorkie has brought so much joy to our family. We can't thank you enough for such a premium puppy!",
             ].map((testimonial, idx) => (
-              <div key={idx} style={testimonialStyle}>
-                ⭐⭐⭐⭐⭐
-                <p style={{ margin: "16px 0 0" }}>&quot;{testimonial}&quot;</p>
+              <div key={idx} style={{ ...cardStyle, padding: "28px 22px", fontStyle: "italic", color: "#3f3d3a", lineHeight: 1.8 }}>
+                <div style={{ color: "#c9a46d", fontSize: "1.3rem", marginBottom: "10px" }}>★★★★★</div>
+                <p style={{ margin: 0 }}>“{testimonial}”</p>
               </div>
             ))}
           </div>
@@ -560,71 +436,53 @@ export default async function Home() {
       <section
         id="contact"
         style={{
-          backgroundColor: "#1a202c",
-          color: "#ffffff",
-          padding: "clamp(60px, 12vw, 120px) 20px",
+          backgroundColor: "#171614",
+          color: "#f7f1e6",
+          padding: "90px 20px",
           textAlign: "center",
         }}
       >
         <div style={containerStyle}>
-          <h2 style={{ margin: "0 0 16px", fontSize: "clamp(2rem, 6vw, 3rem)", fontWeight: 700 }}>Get in Touch</h2>
-          <p style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#cbd5e0", marginBottom: "40px" }}>
-            Ready to welcome a premium Yorkshire Terrier into your family?
+          <h2 style={{ ...sectionTitleStyle, color: "#f7f1e6" }}>Get in touch</h2>
+          <p style={{ color: "rgba(255,255,255,0.75)", maxWidth: "620px", margin: "0 auto 36px", lineHeight: 1.8, fontSize: "1.1rem" }}>
+            Ready to welcome a premium Yorkshire Terrier into your family? We would love to hear from you.
           </p>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "clamp(16px, 3vw, 24px)",
-              marginBottom: "clamp(30px, 6vw, 48px)",
-              marginTop: "clamp(30px, 6vw, 40px)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "24px",
+              maxWidth: "760px",
+              margin: "0 auto 30px",
             }}
           >
             <div>
-              <p style={{ fontSize: "clamp(12px, 1.5vw, 14px)", color: "#a0aec0", marginBottom: "8px" }}>EMAIL</p>
-              <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.2rem)", fontWeight: 600 }}>info@tinypawsyorkies.com</p>
+              <p style={{ margin: "0 0 8px", color: "#dbc79a", fontSize: "0.76rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>Email</p>
+              <p style={{ margin: 0, fontSize: "1.05rem", fontWeight: 600 }}>info@tinypawsyorkies.com</p>
             </div>
             <div>
-              <p style={{ fontSize: "clamp(12px, 1.5vw, 14px)", color: "#a0aec0", marginBottom: "8px" }}>PHONE</p>
-              <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.2rem)", fontWeight: 600 }}>+237 679 409 897</p>
+              <p style={{ margin: "0 0 8px", color: "#dbc79a", fontSize: "0.76rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>Phone</p>
+              <p style={{ margin: 0, fontSize: "1.05rem", fontWeight: 600 }}>+237 679 409 897</p>
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: "clamp(12px, 2vw, 16px)", justifyContent: "center", flexWrap: "wrap" }}>
-            <a
-              href="mailto:info@tinypawsyorkies.com"
-              style={{
-                display: "inline-block",
-                backgroundColor: "#d4a574",
-                color: "#1a202c",
-                padding: "clamp(12px, 2vw, 16px) clamp(24px, 4vw, 40px)",
-                borderRadius: "50px",
-                textDecoration: "none",
-                fontWeight: 700,
-                fontSize: "clamp(14px, 2vw, 16px)",
-                boxShadow: "0 8px 24px rgba(212, 165, 116, 0.3)",
-              }}
-            >
-              Email Us
+          <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
+            <a href="mailto:info@tinypawsyorkies.com" style={classicButtonStyle}>
+              Email us
             </a>
             <a
               href="https://wa.me/237679409897"
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                display: "inline-block",
-                backgroundColor: "#25D366",
-                color: "#ffffff",
-                padding: "clamp(12px, 2vw, 16px) clamp(24px, 4vw, 40px)",
-                borderRadius: "50px",
-                textDecoration: "none",
-                fontWeight: 700,
-                fontSize: "clamp(14px, 2vw, 16px)",
-                boxShadow: "0 8px 24px rgba(37, 211, 102, 0.3)",
+                ...classicButtonStyle,
+                background: "#25D366",
+                color: "#fff",
+                boxShadow: "0 12px 22px rgba(37, 211, 102, 0.25)",
               }}
             >
-              WhatsApp Message
+              WhatsApp
             </a>
           </div>
         </div>
@@ -636,32 +494,33 @@ export default async function Home() {
         rel="noopener noreferrer"
         style={{
           position: "fixed",
-          bottom: "clamp(16px, 3vw, 24px)",
-          right: "clamp(16px, 3vw, 24px)",
+          bottom: "22px",
+          right: "22px",
           backgroundColor: "#25D366",
-          color: "white",
-          padding: "clamp(12px, 2vw, 16px) clamp(16px, 3vw, 24px)",
-          borderRadius: "50px",
+          color: "#fff",
+          padding: "12px 18px",
+          borderRadius: "999px",
           textDecoration: "none",
           fontWeight: 700,
-          fontSize: "clamp(12px, 1.8vw, 14px)",
-          boxShadow: "0 12px 40px rgba(37, 211, 102, 0.4)",
-          zIndex: 50,
+          fontSize: "0.8rem",
+          letterSpacing: "0.04em",
+          boxShadow: "0 16px 32px rgba(37, 211, 102, 0.3)",
+          zIndex: 100,
         }}
       >
-        💬 WhatsApp
+        WhatsApp
       </a>
 
       <footer
         style={{
-          backgroundColor: "#0f1419",
-          color: "#a0aec0",
+          backgroundColor: "#0e0d0b",
+          color: "#c7c0b5",
           textAlign: "center",
-          padding: "clamp(16px, 3vw, 24px) 20px",
-          fontSize: "clamp(12px, 1.5vw, 14px)",
+          padding: "22px 20px",
+          fontSize: "0.82rem",
         }}
       >
-        <p style={{ margin: 0 }}>© 2024 Tiny Paws Yorkies. All rights reserved. | Premium Yorkshire Terrier Breeding</p>
+        <p style={{ margin: 0 }}>© 2024 Tiny Paws Yorkies. All rights reserved.</p>
       </footer>
     </main>
   );
