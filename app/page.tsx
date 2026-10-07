@@ -85,6 +85,14 @@ const classicButtonStyle: CSSProperties = {
   boxShadow: "0 12px 22px rgba(201, 164, 109, 0.25)",
 };
 
+const featuredCardStyle: CSSProperties = {
+  background: "#fffdf9",
+  border: "1px solid rgba(25, 25, 24, 0.08)",
+  borderRadius: "20px",
+  overflow: "hidden",
+  boxShadow: "0 16px 48px rgba(22, 22, 20, 0.12)",
+};
+
 export default async function Home() {
   const { data: puppies, error } = await supabase.from("puppies").select();
 
@@ -212,7 +220,110 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="about" style={{ background: "#fbf8f4", padding: "90px 20px" }}>
+      <section
+        style={{
+          background:
+            "linear-gradient(180deg, #fbf8f4 0%, rgba(251,248,244,0.95) 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,50 Q300,0 600,50 T1200,50 L1200,100 L0,100 Z%22 fill=%22%23f4f0ea%22 opacity=%220.1%22/></svg>')",
+          backgroundSize: "100% 100%, cover",
+          padding: "80px 20px",
+        }}
+      >
+        <div style={containerStyle}>
+          <h2 style={sectionTitleStyle}>Meet our featured puppies</h2>
+          <p style={subtitleStyle}>Handpicked companions raised with love and care, ready for their forever homes.</p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "28px",
+              marginTop: "48px",
+            }}
+          >
+            {[
+              { name: "Luna", image: lunaImages[0], desc: "Graceful & affectionate" },
+              { name: "Max", image: maxImages[0], desc: "Spirited & playful" },
+              { name: "Bella", image: bellaImages[0], desc: "Gentle & loving" },
+            ].map((pup) => (
+              <article key={pup.name} style={featuredCardStyle}>
+                <div
+                  style={{
+                    position: "relative",
+                    height: "300px",
+                    backgroundColor: "#e6dfd3",
+                    backgroundImage: `url('${pup.image}')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.25) 100%)",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "14px",
+                      right: "14px",
+                      backgroundColor: "#3d7f59",
+                      color: "#ffffff",
+                      padding: "8px 14px",
+                      borderRadius: "999px",
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Available
+                  </div>
+                </div>
+
+                <div style={{ padding: "28px 24px" }}>
+                  <h3
+                    style={{
+                      margin: "0 0 8px",
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                      fontSize: "2.2rem",
+                      color: "#1b1a18",
+                    }}
+                  >
+                    {pup.name}
+                  </h3>
+                  <p
+                    style={{
+                      margin: "0 0 14px",
+                      color: "#c9a46d",
+                      fontSize: "0.9rem",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {pup.desc}
+                  </p>
+                  <p style={{ margin: 0, color: "#66615d", fontSize: "1rem", lineHeight: 1.7 }}>
+                    8 weeks old • Health certified • Contact for details
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="about"
+        style={{
+          background:
+            "linear-gradient(180deg, #fbf8f4 0%, #faf6f0 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><pattern id=%22dots%22 x=%220%22 y=%220%22 width=%2220%22 height=%2220%22 patternUnits=%22userSpaceOnUse%22><circle cx=%2210%22 cy=%2210%22 r=%221%22 fill=%22%23c9a46d%22 opacity=%220.04%22/></pattern></defs><rect width=%22100%22 height=%22100%22 fill=%22url(%23dots)%22/></svg>')",
+          backgroundSize: "100% 100%, 200px 200px",
+          padding: "90px 20px",
+        }}
+      >
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>A classic approach to thoughtful breeding</h2>
           <p style={subtitleStyle}>
@@ -261,7 +372,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <section style={{ background: "#f0e7dc", padding: "90px 20px" }}>
+      <section
+        style={{
+          background:
+            "linear-gradient(180deg, #f0e7dc 0%, #ebe1d5 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,50 Q300,25 600,50 T1200,50 L1200,0 L0,0 Z%22 fill=%22%23c9a46d%22 opacity=%220.03%22/></svg>')",
+          backgroundSize: "100% 100%, 100% 100%",
+          padding: "90px 20px",
+        }}
+      >
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>Why families choose us</h2>
 
@@ -406,7 +524,15 @@ export default async function Home() {
         </div>
       </section>
 
-      <section style={{ backgroundColor: "#fbf8f4", padding: "90px 20px" }}>
+      <section
+        style={{
+          backgroundColor: "#fbf8f4",
+          background:
+            "linear-gradient(180deg, #fbf8f4 0%, #faf6f0 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,30 Q300,60 600,30 T1200,30 L1200,100 L0,100 Z%22 fill=%22%23c9a46d%22 opacity=%220.03%22/></svg>')",
+          backgroundSize: "100% 100%, 100% 100%",
+          padding: "90px 20px",
+        }}
+      >
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>Happy families</h2>
           <p style={subtitleStyle}>The heartfelt trust families place in us is the greatest compliment.</p>
@@ -426,7 +552,7 @@ export default async function Home() {
             ].map((testimonial, idx) => (
               <div key={idx} style={{ ...cardStyle, padding: "28px 22px", fontStyle: "italic", color: "#3f3d3a", lineHeight: 1.8 }}>
                 <div style={{ color: "#c9a46d", fontSize: "1.3rem", marginBottom: "10px" }}>★★★★★</div>
-                <p style={{ margin: 0 }}>“{testimonial}”</p>
+                <p style={{ margin: 0 }}>"{testimonial}"</p>
               </div>
             ))}
           </div>
@@ -436,7 +562,11 @@ export default async function Home() {
       <section
         id="contact"
         style={{
-          backgroundColor: "#171614",
+          backgroundImage:
+            "linear-gradient(135deg, rgba(17,15,13,0.85) 0%, rgba(52,48,44,0.8) 100%), url('/images/max/photo_3_2026-10-07_10-50-35.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           color: "#f7f1e6",
           padding: "90px 20px",
           textAlign: "center",
