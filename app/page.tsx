@@ -95,19 +95,19 @@ export default async function Home() {
 
   const puppyList = puppies ?? [];
 
-  // Function to get image for puppy based on name
   const getPuppyImage = (puppyName: string, index: number) => {
     const name = puppyName?.toLowerCase() || "";
-    
+
     if (name.includes("luna")) {
       return lunaImages[index % lunaImages.length];
-    } else if (name.includes("max")) {
+    }
+    if (name.includes("max")) {
       return maxImages[index % maxImages.length];
-    } else if (name.includes("bella")) {
+    }
+    if (name.includes("bella")) {
       return bellaImages[index % bellaImages.length];
     }
-    
-    // Default fallback
+
     return lunaImages[index % lunaImages.length];
   };
 
@@ -326,7 +326,7 @@ export default async function Home() {
                     }}
                   >
                     <img
-                      src={puppy.image_url || getPuppyImage(puppy.name, index)}
+                      src={getPuppyImage(puppy.name, index)}
                       alt={puppy.name || "Yorkshire Terrier puppy"}
                       style={{
                         display: "block",
