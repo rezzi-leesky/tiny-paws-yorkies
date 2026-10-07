@@ -10,18 +10,17 @@ const navItems = [
 const linkStyle: CSSProperties = {
   color: "#ffffff",
   textDecoration: "none",
-  marginLeft: "28px",
+  marginLeft: "clamp(12px, 3vw, 28px)",
   fontWeight: 600,
-  fontSize: "16px",
-  transition: "opacity 0.3s ease",
+  fontSize: "clamp(14px, 2vw, 16px)",
 };
 
 const testimonialStyle: CSSProperties = {
   backgroundColor: "#ffffff",
-  padding: "32px",
+  padding: "clamp(20px, 5vw, 32px)",
   borderRadius: "16px",
   boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-  fontSize: "1.1rem",
+  fontSize: "clamp(1rem, 2vw, 1.1rem)",
   lineHeight: 1.8,
   fontStyle: "italic",
   color: "#2d3748",
@@ -29,7 +28,7 @@ const testimonialStyle: CSSProperties = {
 };
 
 const sectionTitleStyle: CSSProperties = {
-  fontSize: "3rem",
+  fontSize: "clamp(2rem, 7vw, 3rem)",
   fontWeight: 700,
   marginBottom: "16px",
   textAlign: "center",
@@ -38,10 +37,10 @@ const sectionTitleStyle: CSSProperties = {
 };
 
 const subtitleStyle: CSSProperties = {
-  fontSize: "1.2rem",
+  fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
   textAlign: "center",
   color: "#718096",
-  margin: "0 auto 48px",
+  margin: "0 auto clamp(30px, 8vw, 48px)",
   maxWidth: "600px",
 };
 
@@ -79,7 +78,7 @@ export default async function Home() {
         style={{
           backgroundColor: "#1a202c",
           color: "#ffffff",
-          padding: "24px 40px",
+          padding: "clamp(16px, 4vw, 24px) clamp(20px, 5vw, 40px)",
           position: "sticky",
           top: 0,
           zIndex: 100,
@@ -92,23 +91,17 @@ export default async function Home() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "20px",
+            gap: "clamp(12px, 3vw, 20px)",
+            flexWrap: "wrap",
           }}
         >
-          <h2 style={{ margin: 0, fontSize: "28px", fontWeight: 700, letterSpacing: "0.5px" }}>
+          <h2 style={{ margin: 0, fontSize: "clamp(20px, 5vw, 28px)", fontWeight: 700, letterSpacing: "0.5px" }}>
             ✨ Tiny Paws Yorkies
           </h2>
 
-          <nav aria-label="Main navigation" style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          <nav aria-label="Main navigation" style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)" }}>
             {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                style={{
-                  ...linkStyle,
-                  marginLeft: item === navItems[0] ? 0 : "28px",
-                }}
-              >
+              <a key={item.href} href={item.href} style={linkStyle}>
                 {item.label}
               </a>
             ))}
@@ -122,7 +115,7 @@ export default async function Home() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          minHeight: "750px",
+          minHeight: "clamp(500px, 80vh, 750px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -130,12 +123,12 @@ export default async function Home() {
           position: "relative",
         }}
       >
-        <div style={{ position: "relative", zIndex: 1, color: "white", maxWidth: "900px", padding: "40px 20px" }}>
+        <div style={{ position: "relative", zIndex: 1, color: "white", maxWidth: "900px", padding: "clamp(30px, 5vw, 40px)" }}>
           <h1
             style={{
-              fontSize: "clamp(2.5rem, 8vw, 5rem)",
+              fontSize: "clamp(2rem, 8vw, 5rem)",
               fontWeight: 800,
-              margin: "0 0 24px 0",
+              margin: "0 0 clamp(16px, 4vw, 24px) 0",
               lineHeight: 1.1,
               letterSpacing: "-1px",
             }}
@@ -145,9 +138,9 @@ export default async function Home() {
 
           <p
             style={{
-              fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
-              marginTop: "20px",
-              marginBottom: "40px",
+              fontSize: "clamp(1rem, 3vw, 1.8rem)",
+              marginTop: "clamp(16px, 3vw, 20px)",
+              marginBottom: "clamp(30px, 5vw, 40px)",
               fontWeight: 300,
               opacity: 0.95,
             }}
@@ -161,11 +154,11 @@ export default async function Home() {
               display: "inline-block",
               backgroundColor: "#d4a574",
               color: "#1a202c",
-              padding: "16px 48px",
+              padding: "clamp(12px, 3vw, 16px) clamp(30px, 5vw, 48px)",
               borderRadius: "50px",
               textDecoration: "none",
               fontWeight: 700,
-              fontSize: "18px",
+              fontSize: "clamp(14px, 2vw, 18px)",
               boxShadow: "0 8px 24px rgba(212, 165, 116, 0.3)",
               border: "2px solid #d4a574",
             }}
@@ -175,7 +168,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="about" style={{ padding: "120px 20px", backgroundColor: "#ffffff" }}>
+      <section id="about" style={{ padding: "clamp(60px, 12vw, 120px) 20px", backgroundColor: "#ffffff" }}>
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>About Tiny Paws Yorkies</h2>
           <div style={subtitleStyle}>Dedicated to excellence in Yorkshire Terrier breeding</div>
@@ -183,10 +176,10 @@ export default async function Home() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "48px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "clamp(24px, 5vw, 48px)",
               alignItems: "center",
-              marginTop: "60px",
+              marginTop: "clamp(40px, 8vw, 60px)",
             }}
           >
             <div
@@ -194,20 +187,20 @@ export default async function Home() {
                 backgroundImage: "url('/images/puppy4.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                minHeight: "400px",
+                minHeight: "300px",
                 borderRadius: "20px",
                 boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
               }}
             />
 
             <div>
-              <p style={{ fontSize: "1.15rem", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
+              <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.15rem)", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
                 At Tiny Paws Yorkies, we're passionate about breeding exceptional Yorkshire Terriers with perfect health, vibrant temperament, and beautiful conformation.
               </p>
-              <p style={{ fontSize: "1.15rem", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
+              <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.15rem)", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
                 Every puppy is born from champion bloodlines, vet-checked from day one, vaccinated, microchipped, and given early socialization to ensure they're ready for their forever families.
               </p>
-              <p style={{ fontSize: "1.15rem", lineHeight: 1.9, color: "#4a5568" }}>
+              <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.15rem)", lineHeight: 1.9, color: "#4a5568" }}>
                 We provide lifetime breeder support and a health guarantee because we stand behind every puppy we raise.
               </p>
             </div>
@@ -215,16 +208,16 @@ export default async function Home() {
         </div>
       </section>
 
-      <section style={{ padding: "120px 20px", backgroundColor: "#f7fafc" }}>
+      <section style={{ padding: "clamp(60px, 12vw, 120px) 20px", backgroundColor: "#f7fafc" }}>
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>Why Choose Tiny Paws Yorkies</h2>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-              gap: "32px",
-              marginTop: "60px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: "clamp(20px, 4vw, 32px)",
+              marginTop: "clamp(40px, 8vw, 60px)",
             }}
           >
             {[
@@ -239,15 +232,15 @@ export default async function Home() {
                 key={idx}
                 style={{
                   background: "#ffffff",
-                  padding: "32px",
+                  padding: "clamp(20px, 5vw, 32px)",
                   borderRadius: "16px",
                   textAlign: "center",
                   boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
                 }}
               >
-                <div style={{ fontSize: "48px", marginBottom: "16px" }}>{item.icon}</div>
-                <h3 style={{ fontSize: "1.3rem", fontWeight: 700, marginBottom: "12px", color: "#1a202c" }}>{item.title}</h3>
-                <p style={{ color: "#718096", fontSize: "1rem", lineHeight: 1.6 }}>{item.desc}</p>
+                <div style={{ fontSize: "clamp(32px, 8vw, 48px)", marginBottom: "16px" }}>{item.icon}</div>
+                <h3 style={{ fontSize: "clamp(1rem, 2vw, 1.3rem)", fontWeight: 700, marginBottom: "12px", color: "#1a202c" }}>{item.title}</h3>
+                <p style={{ color: "#718096", fontSize: "clamp(0.9rem, 1.8vw, 1rem)", lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -262,7 +255,7 @@ export default async function Home() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundColor: "#2d3748",
-          padding: "120px 20px",
+          padding: "clamp(60px, 12vw, 120px) 20px",
         }}
       >
         <div style={containerStyle}>
@@ -270,16 +263,16 @@ export default async function Home() {
           <div style={{ ...subtitleStyle, color: "#cbd5e0" }}>Each puppy is bred for health, temperament, and beauty</div>
 
           {puppyList.length === 0 ? (
-            <div style={{ textAlign: "center", color: "#cbd5e0", fontSize: "18px", padding: "60px 20px" }}>
+            <div style={{ textAlign: "center", color: "#cbd5e0", fontSize: "clamp(16px, 3vw, 18px)", padding: "clamp(40px, 8vw, 60px) 20px" }}>
               Check back soon for our latest litter!
             </div>
           ) : (
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "32px",
-                marginTop: "40px",
+                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                gap: "clamp(20px, 4vw, 32px)",
+                marginTop: "clamp(30px, 6vw, 40px)",
               }}
             >
               {puppyList.map((puppy: any) => (
@@ -288,7 +281,7 @@ export default async function Home() {
                     style={{
                       position: "relative",
                       width: "100%",
-                      height: "280px",
+                      height: "clamp(220px, 50vw, 280px)",
                       overflow: "hidden",
                       backgroundColor: "#e2e8f0",
                     }}
@@ -310,9 +303,9 @@ export default async function Home() {
                         right: "12px",
                         backgroundColor: puppy.available ? "#48bb78" : "#f56565",
                         color: "#ffffff",
-                        padding: "8px 16px",
+                        padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
                         borderRadius: "20px",
-                        fontSize: "14px",
+                        fontSize: "clamp(12px, 1.5vw, 14px)",
                         fontWeight: 700,
                         textTransform: "uppercase",
                       }}
@@ -321,21 +314,21 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <div style={{ padding: "28px" }}>
-                    <h3 style={{ margin: "0 0 16px", fontSize: "1.8rem", fontWeight: 700, color: "#1a202c" }}>
+                  <div style={{ padding: "clamp(16px, 4vw, 28px)" }}>
+                    <h3 style={{ margin: "0 0 12px", fontSize: "clamp(1.4rem, 4vw, 1.8rem)", fontWeight: 700, color: "#1a202c" }}>
                       {puppy.name}
                     </h3>
 
                     <div style={{ display: "grid", gap: "8px", marginBottom: "16px" }}>
-                      <p style={{ margin: "0", fontSize: "1rem", color: "#718096" }}>
+                      <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
                         <span style={{ fontWeight: 600, color: "#1a202c" }}>Age:</span> {puppy.age}
                       </p>
-                      <p style={{ margin: "0", fontSize: "1rem", color: "#718096" }}>
+                      <p style={{ margin: "0", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#718096" }}>
                         <span style={{ fontWeight: 600, color: "#1a202c" }}>Price:</span> ${puppy.price?.toLocaleString() || "Contact"}
                       </p>
                     </div>
 
-                    <p style={{ margin: "16px 0 0", fontSize: "0.95rem", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "16px" }}>
+                    <p style={{ margin: "12px 0 0", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#a0aec0", borderTop: "1px solid #e2e8f0", paddingTop: "12px" }}>
                       ✓ Health Certified • ✓ Vaccinated • ✓ Microchipped
                     </p>
                   </div>
@@ -346,7 +339,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section style={{ backgroundColor: "#ffffff", padding: "120px 20px" }}>
+      <section style={{ backgroundColor: "#ffffff", padding: "clamp(60px, 12vw, 120px) 20px" }}>
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>Happy Families</h2>
           <div style={subtitleStyle}>What our families say about their new companions</div>
@@ -354,9 +347,9 @@ export default async function Home() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "32px",
-              marginTop: "60px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              gap: "clamp(20px, 4vw, 32px)",
+              marginTop: "clamp(40px, 8vw, 60px)",
             }}
           >
             {[
@@ -378,47 +371,47 @@ export default async function Home() {
         style={{
           backgroundColor: "#1a202c",
           color: "#ffffff",
-          padding: "120px 20px",
+          padding: "clamp(60px, 12vw, 120px) 20px",
           textAlign: "center",
         }}
       >
         <div style={containerStyle}>
-          <h2 style={{ margin: "0 0 16px", fontSize: "3rem", fontWeight: 700 }}>Get in Touch</h2>
-          <p style={{ fontSize: "1.2rem", color: "#cbd5e0", marginBottom: "40px" }}>
+          <h2 style={{ margin: "0 0 16px", fontSize: "clamp(2rem, 6vw, 3rem)", fontWeight: 700 }}>Get in Touch</h2>
+          <p style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "#cbd5e0", marginBottom: "40px" }}>
             Ready to welcome a premium Yorkshire Terrier into your family?
           </p>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-              gap: "24px",
-              marginBottom: "48px",
-              marginTop: "40px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: "clamp(16px, 3vw, 24px)",
+              marginBottom: "clamp(30px, 6vw, 48px)",
+              marginTop: "clamp(30px, 6vw, 40px)",
             }}
           >
             <div>
-              <p style={{ fontSize: "14px", color: "#a0aec0", marginBottom: "8px" }}>EMAIL</p>
-              <p style={{ fontSize: "1.2rem", fontWeight: 600 }}>info@tinypawsyorkies.com</p>
+              <p style={{ fontSize: "clamp(12px, 1.5vw, 14px)", color: "#a0aec0", marginBottom: "8px" }}>EMAIL</p>
+              <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.2rem)", fontWeight: 600 }}>info@tinypawsyorkies.com</p>
             </div>
             <div>
-              <p style={{ fontSize: "14px", color: "#a0aec0", marginBottom: "8px" }}>PHONE</p>
-              <p style={{ fontSize: "1.2rem", fontWeight: 600 }}>+237 679 409 897</p>
+              <p style={{ fontSize: "clamp(12px, 1.5vw, 14px)", color: "#a0aec0", marginBottom: "8px" }}>PHONE</p>
+              <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.2rem)", fontWeight: 600 }}>+237 679 409 897</p>
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "clamp(12px, 2vw, 16px)", justifyContent: "center", flexWrap: "wrap" }}>
             <a
               href="mailto:info@tinypawsyorkies.com"
               style={{
                 display: "inline-block",
                 backgroundColor: "#d4a574",
                 color: "#1a202c",
-                padding: "16px 40px",
+                padding: "clamp(12px, 2vw, 16px) clamp(24px, 4vw, 40px)",
                 borderRadius: "50px",
                 textDecoration: "none",
                 fontWeight: 700,
-                fontSize: "16px",
+                fontSize: "clamp(14px, 2vw, 16px)",
                 boxShadow: "0 8px 24px rgba(212, 165, 116, 0.3)",
               }}
             >
@@ -432,11 +425,11 @@ export default async function Home() {
                 display: "inline-block",
                 backgroundColor: "#25D366",
                 color: "#ffffff",
-                padding: "16px 40px",
+                padding: "clamp(12px, 2vw, 16px) clamp(24px, 4vw, 40px)",
                 borderRadius: "50px",
                 textDecoration: "none",
                 fontWeight: 700,
-                fontSize: "16px",
+                fontSize: "clamp(14px, 2vw, 16px)",
                 boxShadow: "0 8px 24px rgba(37, 211, 102, 0.3)",
               }}
             >
@@ -452,15 +445,15 @@ export default async function Home() {
         rel="noopener noreferrer"
         style={{
           position: "fixed",
-          bottom: "24px",
-          right: "24px",
+          bottom: "clamp(16px, 3vw, 24px)",
+          right: "clamp(16px, 3vw, 24px)",
           backgroundColor: "#25D366",
           color: "white",
-          padding: "16px 24px",
+          padding: "clamp(12px, 2vw, 16px) clamp(16px, 3vw, 24px)",
           borderRadius: "50px",
           textDecoration: "none",
           fontWeight: 700,
-          fontSize: "14px",
+          fontSize: "clamp(12px, 1.8vw, 14px)",
           boxShadow: "0 12px 40px rgba(37, 211, 102, 0.4)",
           zIndex: 50,
         }}
@@ -473,8 +466,8 @@ export default async function Home() {
           backgroundColor: "#0f1419",
           color: "#a0aec0",
           textAlign: "center",
-          padding: "24px 20px",
-          fontSize: "14px",
+          padding: "clamp(16px, 3vw, 24px) 20px",
+          fontSize: "clamp(12px, 1.5vw, 14px)",
         }}
       >
         <p style={{ margin: 0 }}>© 2024 Tiny Paws Yorkies. All rights reserved. | Premium Yorkshire Terrier Breeding</p>
