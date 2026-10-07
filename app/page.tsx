@@ -1,10 +1,16 @@
 import { supabase } from "@/lib/supabase";
-import Image from "next/image";
+
+const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Puppies", href: "#puppies" },
+  { label: "Contact", href: "#contact" },
+];
 
 const linkStyle = {
   color: "#ffffff",
   textDecoration: "none",
   marginLeft: "20px",
+  fontWeight: 500,
 };
 
 const testimonialStyle = {
@@ -12,95 +18,60 @@ const testimonialStyle = {
   padding: "24px",
   borderRadius: "12px",
   boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+  fontSize: "1.05rem",
+  lineHeight: "1.7",
+};
+
+const sectionTitleStyle = {
+  fontSize: "2.5rem",
+  marginBottom: "24px",
+  textAlign: "center",
+  color: "#111827",
+};
+
+const containerStyle = {
+  maxWidth: "1200px",
+  margin: "0 auto",
 };
 
 export default async function Home() {
   const { data: puppies, error } = await supabase.from("puppies").select();
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <main style={{ padding: "40px 20px" }}>Error: {error.message}</main>;
   }
 
+  const puppyList = puppies ?? [];
+
   return (
-    <main>
-  <section
-style={{
-padding: "60px 20px",
-background: "#f5f5f5",
-}}
->
-<h2
-style={{
-textAlign: "center",
-marginBottom: "30px",
-}}
->
-Available Puppies
-</h2>
- 
-<div
-style={{
-display: "flex",
-gap: "20px",
-flexWrap: "wrap",
-justifyContent: "center",
-}}
->
-{puppies?.map((puppy) => (
-<div
-     key={puppy.id}>
-{puppy.image_url && (
-  <Image
-    src={puppy.image_url}
-    alt={puppy.name}
-    width={250}
-    height={200}
-    style={{ objectFit: "cover", borderRadius: "12px" }}
-  />
-)}
-<h3>{puppy.name}</h3>
- 
-<p>Age: {puppy.age}</p>
- 
-<p>Price: ${puppy.price}</p>
- 
-<p>
-{puppy.available ? "✅ Available" : "❌ Sold"}
-</p>
-
-</div>
-))}
-</div>
-</section>
-
+    <main style={{ fontFamily: "Arial, sans-serif", background: "#f9fafb", color: "#111827" }}>
       <header
         style={{
           backgroundColor: "#111827",
           color: "#ffffff",
           padding: "20px 40px",
+          position: "sticky",
+          top: 0,
+          zIndex: 10,
         }}
       >
         <div
           style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
+            ...containerStyle,
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            gap: "20px",
           }}
         >
-          <h2>Tiny Paws Yorkies</h2>
+          <h2 style={{ margin: 0, fontSize: "1.8rem" }}>Tiny Paws Yorkies</h2>
 
-          <nav>
-            <a href="#about" style={linkStyle}>
-              About
-            </a>
-            <a href="#puppies" style={linkStyle}>
-              Puppies
-            </a>
-            <a href="#contact" style={linkStyle}>
-              Contact
-            </a>
+          <nav aria-label="Main navigation" style={{ display: "flex", flexWrap: "wrap" }}>
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} style={linkStyle}>
+                {item.label}
+              </a>
+            ))}
           </nav>
         </div>
       </header>
@@ -132,12 +103,15 @@ justifyContent: "center",
             position: "relative",
             zIndex: 1,
             color: "white",
+            maxWidth: "900px",
+            padding: "20px",
           }}
         >
           <h1
             style={{
-              fontSize: "4rem",
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
               fontWeight: "bold",
+              margin: 0,
             }}
           >
             Premium Yorkshire Terrier Puppies
@@ -145,88 +119,55 @@ justifyContent: "center",
 
           <p
             style={{
-              fontSize: "1.5rem",
+              fontSize: "clamp(1.1rem, 2vw, 1.5rem)",
               marginTop: "20px",
             }}
           >
-            Healthy, Happy and Raised with Love
+            Healthy, happy puppies raised with love and care.
           </p>
         </div>
       </section>
 
-      <section
-        style={{
-          padding: "80px 20px",
-        }}
-      >
-        <h2>Our Puppies</h2>
+      <section id="about" style={{ padding: "80px 20px" }}>
+        <div style={containerStyle}>
+          <h2 style={sectionTitleStyle}>About Tiny Paws Yorkies</h2>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "20px",
-            flexWrap: "wrap",
-          }}
-        >
-          {puppies?.map((puppy) => (
-            <div 
-            
-              key={puppy.id}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+              alignItems: "stretch",
+            }}
+          >
+            <div
               style={{
-                background: "#fff",
+                backgroundImage: "url('/images/puppy4.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                minHeight: "320px",
                 borderRadius: "16px",
-                padding: "20px",
-                width: "300px",
-boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-textAlign: "center",
-}}
->
-<h3>{puppy.name}</h3>
- 
-<p>Age: {puppy.age}</p>
- 
-<p>Price: ${puppy.price}</p>
- 
-<p>
-{puppy.available ? "✅ Available" : "❌ Sold"}
-</p>
-</div>
-))}
+              }}
+            />
+
+            <div
+              style={{
+                background: "#ffffff",
+                borderRadius: "16px",
+                padding: "32px",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <p style={{ fontSize: "1.1rem", lineHeight: "1.8", margin: 0 }}>
+                At Tiny Paws Yorkies, we focus on raising healthy, well-socialized Yorkshire
+                Terrier puppies. Every puppy receives exceptional care, veterinary attention,
+                and early socialization before joining a new family.
+              </p>
+            </div>
+          </div>
         </div>
-        <p
-          style={{
-            fontSize: "1.3rem",
-          }}
-        >
-          Raised with love and ready for their forever homes
-        </p>
-      </section>
-
-      <section
-        id="about"
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "80px 20px",
-        }}
-      >
-        <h2>About Tiny Paws Yorkies</h2>
-
-        <p
-          style={{
-            backgroundImage: "url('/images/puppy4.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            marginTop: "20px",
-            lineHeight: "1.8",
-          }}
-        >
-          At Tiny Paws Yorkies, we focus on raising healthy, well-socialized
-          Yorkshire Terrier puppies. Every puppy receives exceptional care,
-          veterinary attention, and early socialization before joining a new
-          family.
-        </p>
       </section>
 
       <section
@@ -240,101 +181,92 @@ textAlign: "center",
           padding: "80px 20px",
         }}
       >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          <h2>Available Puppies</h2>
+        <div style={containerStyle}>
+          <h2 style={{ ...sectionTitleStyle, color: "#ffffff" }}>Available Puppies</h2>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "24px",
               marginTop: "30px",
             }}
           >
-            
-            {puppies?.map((puppy) => (
-  <div
-    key={puppy.id}
-    style={{
-      background: "#fff",
-      borderRadius: "16px",
-      overflow: "hidden",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-      width: "300px",
-    }}
-  >      
-<img
-  src={puppy.image_url}
-  alt="Puppy"
-  style={{ height: "220px", objectFit: "cover" }}
-/>
-      <p>   CKC/AKC Quality • Vet Checked • Vaccinations Current
-      </p>
-  </div>  
-    </section>
-     ))} 
-        <section
-        style={{
-          backgroundImage: "url('/images/puppy2.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          padding: "80px 20px",
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
-      >
-        <h2>Why Families Choose Us</h2>
+            {puppyList.map((puppy: any) => (
+              <article
+                key={puppy.id}
+                style={{
+                  background: "#ffffff",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
+                }}
+              >
+                <img
+                  src={puppy.image_url || "/images/puppy2.jpg"}
+                  alt={puppy.name || "Yorkshire Terrier puppy"}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "220px",
+                    objectFit: "cover",
+                  }}
+                />
 
-        <ul
-          style={{
-            marginTop: "25px",
-            lineHeight: "2",
-          }}
-        >
-          <li>Health-checked puppies</li>
-          <li>Early socialization</li>
-          <li>Ongoing breeder support</li>
-          <li>Clean and loving environment</li>
-          <li>Beautiful Yorkshire Terrier bloodlines</li>
-        </ul>
+                <div style={{ padding: "20px" }}>
+                  <h3 style={{ margin: "0 0 12px", fontSize: "1.6rem" }}>{puppy.name}</h3>
+                  <p style={{ margin: "6px 0" }}>Age: {puppy.age}</p>
+                  <p style={{ margin: "6px 0" }}>Price: ${puppy.price}</p>
+                  <p style={{ margin: "6px 0" }}>
+                    {puppy.available ? "✅ Available" : "❌ Sold"}
+                  </p>
+                  <p style={{ margin: "12px 0 0", color: "#4b5563" }}>
+                    CKC/AKC Quality • Vet Checked • Vaccinations Current
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section
-        style={{
-          backgroundColor: "#f9fafb",
-          padding: "80px 20px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          <h2>Happy Families</h2>
+      <section style={{ padding: "80px 20px", backgroundColor: "#ffffff" }}>
+        <div style={containerStyle}>
+          <h2 style={{ ...sectionTitleStyle, marginBottom: "20px" }}>Why Families Choose Us</h2>
+
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: "25px auto 0",
+              maxWidth: "800px",
+              lineHeight: "2.2",
+              fontSize: "1.1rem",
+            }}
+          >
+            <li>• Health-checked puppies</li>
+            <li>• Early socialization</li>
+            <li>• Ongoing breeder support</li>
+            <li>• Clean and loving environment</li>
+            <li>• Beautiful Yorkshire Terrier bloodlines</li>
+          </ul>
+        </div>
+      </section>
+
+      <section style={{ backgroundColor: "#f9fafb", padding: "80px 20px" }}>
+        <div style={containerStyle}>
+          <h2 style={sectionTitleStyle}>Happy Families</h2>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
+              gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
               gap: "24px",
               marginTop: "30px",
             }}
           >
-            <div style={testimonialStyle}>
-              “Wonderful breeder and an amazing Yorkie puppy.”
-            </div>
-
-            <div style={testimonialStyle}>
-              “Excellent communication from start to finish.”
-            </div>
-
+            <div style={testimonialStyle}>“Wonderful breeder and an amazing Yorkie puppy.”</div>
+            <div style={testimonialStyle}>“Excellent communication from start to finish.”</div>
             <div style={testimonialStyle}>
               “Healthy, beautiful puppy that fit perfectly into our family.”
             </div>
@@ -351,55 +283,51 @@ textAlign: "center",
           padding: "80px 20px",
         }}
       >
-        <h2>Contact Us</h2>
+        <div style={containerStyle}>
+          <h2 style={{ margin: 0, fontSize: "2.5rem" }}>Contact Us</h2>
 
-        <p style={{ marginTop: "20px" }}>
-          Email: info@tinypawsyorkies.com
-        </p>
+          <p style={{ marginTop: "20px", fontSize: "1.1rem" }}>Email: info@tinypawsyorkies.com</p>
+          <p style={{ fontSize: "1.1rem" }}>Phone: +237679409897</p>
 
-        <p>Phone: +237679409897</p>
-
-        <button
-          style={{
-            marginTop: "25px",
-            backgroundColor: "#f59e0b",
-            padding: "14px 30px",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-          }}
-        >
-          Get In Touch
-        </button>
+          <a
+            href="mailto:info@tinypawsyorkies.com"
+            style={{
+              display: "inline-block",
+              marginTop: "25px",
+              backgroundColor: "#f59e0b",
+              color: "#111827",
+              padding: "14px 30px",
+              borderRadius: "8px",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+          >
+            Get In Touch
+          </a>
+        </div>
       </section>
 
-      <div style={{ color: "white", padding: "20px" }}>
-        <h2>Database Test</h2>
-
-        {puppies?.map((puppy: { id: number; name: string }) => (
-          <p key={puppy.id}>{puppy.name}</p>
-        ))}
-      </div>
-<a
-  href="https://wa.me/237679409897"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    position: "fixed",
-    bottom: "20px",
-    right: "20px",
-    backgroundColor: "#25D366",
-    color: "white",
-    padding: "14px 20px",
-      borderRadius: "8px",
-textDecoration: "none",
-display: "inline-block",
-marginTop: "20px",
-}}
->
-WhatsApp Us
-</a>
-  </main>
+      <a
+        href="https://wa.me/237679409897"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          backgroundColor: "#25D366",
+          color: "white",
+          padding: "14px 20px",
+          borderRadius: "8px",
+          textDecoration: "none",
+          display: "inline-block",
+          fontWeight: 700,
+          boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+          zIndex: 20,
+        }}
+      >
+        WhatsApp Us
+      </a>
+    </main>
   );
 }
