@@ -7,6 +7,18 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
+const puppyFallbackImages = [
+  "/images/luna/photo_1_2026-10-07_10-46-30.jpg",
+  "/images/luna/photo_2_2026-10-07_10-46-30.jpg",
+  "/images/luna/photo_3_2026-10-07_10-46-30.jpg",
+  "/images/luna/photo_4_2026-10-07_10-32-46.jpg",
+  "/images/max/photo_1_2026-10-07_10-50-35.jpg",
+  "/images/max/photo_2_2026-10-07_10-50-35.jpg",
+  "/images/max/photo_3_2026-10-07_10-50-35.jpg",
+  "/images/max/photo_4_2026-10-07_10-50-35.jpg",
+  "/images/max/photo_5_2026-10-07_10-50-35.jpg",
+];
+
 const linkStyle: CSSProperties = {
   color: "#ffffff",
   textDecoration: "none",
@@ -111,7 +123,7 @@ export default async function Home() {
 
       <section
         style={{
-          backgroundImage: "linear-gradient(135deg, rgba(26, 32, 44, 0.7) 0%, rgba(107, 114, 128, 0.6) 100%), url('/images/puppy2.jpg')",
+          backgroundImage: "linear-gradient(135deg, rgba(26, 32, 44, 0.7) 0%, rgba(107, 114, 128, 0.6) 100%), url('/images/luna/photo_1_2026-10-07_10-46-30.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -184,7 +196,7 @@ export default async function Home() {
           >
             <div
               style={{
-                backgroundImage: "url('/images/puppy4.jpg')",
+                backgroundImage: "url('/images/luna/photo_4_2026-10-07_10-32-46.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 minHeight: "300px",
@@ -250,7 +262,7 @@ export default async function Home() {
       <section
         id="puppies"
         style={{
-          backgroundImage: "url('/images/puppy3.jpg')",
+          backgroundImage: "url('/images/luna/photo_2_2026-10-07_10-46-30.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -275,7 +287,7 @@ export default async function Home() {
                 marginTop: "clamp(30px, 6vw, 40px)",
               }}
             >
-              {puppyList.map((puppy: any) => (
+              {puppyList.map((puppy: any, index: number) => (
                 <article key={puppy.id} style={puppyCardStyle}>
                   <div
                     style={{
@@ -287,7 +299,7 @@ export default async function Home() {
                     }}
                   >
                     <img
-                      src={puppy.image_url || "/images/puppy2.jpg"}
+                      src={puppy.image_url || puppyFallbackImages[index % puppyFallbackImages.length]}
                       alt={puppy.name || "Yorkshire Terrier puppy"}
                       style={{
                         display: "block",
