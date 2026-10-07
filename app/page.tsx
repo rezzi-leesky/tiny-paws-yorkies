@@ -268,6 +268,7 @@ textAlign: "center",
       width: "300px",
     }}
     ></div>
+   <div>      
 <img
   src={puppy.image_url}
   alt="Puppy"
