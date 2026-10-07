@@ -275,9 +275,10 @@ textAlign: "center",
 />
       <p>   CKC/AKC Quality • Vet Checked • Vaccinations Current
       </p>
-  </div>
-     </section>    
+  </div>    
      ))} 
+       </section>
+          );
           <section
         style={{
           backgroundImage: "url('/images/puppy2.jpg')",
