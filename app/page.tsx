@@ -268,11 +268,12 @@ textAlign: "center",
       width: "300px",
     }}
     ></div>
-
-      <p>      
-  {puppy.image_url} style={{ height: "220px", objectFit: "cover" }} >
-    
-        CKC/AKC Quality • Vet Checked • Vaccinations Current
+<img
+  src={puppy.image_url}
+  alt="Puppy"
+  style={{ height: "220px", objectFit: "cover" }}
+/>
+      <p>   CKC/AKC Quality • Vet Checked • Vaccinations Current
       </p>
     </div>
   </div>
