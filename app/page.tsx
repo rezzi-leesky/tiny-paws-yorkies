@@ -278,7 +278,6 @@ textAlign: "center",
   </div>    
      ))} 
        </section>
-          );
           <section
         style={{
           backgroundImage: "url('/images/puppy2.jpg')",
