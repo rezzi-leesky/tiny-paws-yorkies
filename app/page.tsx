@@ -267,8 +267,7 @@ textAlign: "center",
       boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
       width: "300px",
     }}
-    ></div>
-   <div>      
+  >      
 <img
   src={puppy.image_url}
   alt="Puppy"
@@ -276,7 +275,6 @@ textAlign: "center",
 />
       <p>   CKC/AKC Quality • Vet Checked • Vaccinations Current
       </p>
-    </div>
   </div>
 ))}
       </section>
