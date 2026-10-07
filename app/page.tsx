@@ -7,16 +7,27 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-const puppyFallbackImages = [
+// Luna images
+const lunaImages = [
   "/images/luna/photo_1_2026-10-07_10-46-30.jpg",
   "/images/luna/photo_2_2026-10-07_10-46-30.jpg",
   "/images/luna/photo_3_2026-10-07_10-46-30.jpg",
-  "/images/luna/photo_4_2026-10-07_10-32-46.jpg",
+  "/images/luna/photo_4_2026-10-07_10-46-30.jpg",
+  "/images/luna/photo_5_2026-10-07_10-46-30.jpg",
+];
+
+// Max images
+const maxImages = [
   "/images/max/photo_1_2026-10-07_10-50-35.jpg",
   "/images/max/photo_2_2026-10-07_10-50-35.jpg",
   "/images/max/photo_3_2026-10-07_10-50-35.jpg",
   "/images/max/photo_4_2026-10-07_10-50-35.jpg",
   "/images/max/photo_5_2026-10-07_10-50-35.jpg",
+];
+
+// Bella images
+const bellaImages = [
+  "/images/bella/photo_4_2026-10-07_10-32-46.jpg",
 ];
 
 const linkStyle: CSSProperties = {
@@ -83,6 +94,22 @@ export default async function Home() {
   }
 
   const puppyList = puppies ?? [];
+
+  // Function to get image for puppy based on name
+  const getPuppyImage = (puppyName: string, index: number) => {
+    const name = puppyName?.toLowerCase() || "";
+    
+    if (name.includes("luna")) {
+      return lunaImages[index % lunaImages.length];
+    } else if (name.includes("max")) {
+      return maxImages[index % maxImages.length];
+    } else if (name.includes("bella")) {
+      return bellaImages[index % bellaImages.length];
+    }
+    
+    // Default fallback
+    return lunaImages[index % lunaImages.length];
+  };
 
   return (
     <main style={{ fontFamily: "'Segoe UI', 'Trebuchet MS', sans-serif", background: "#fafaf9", color: "#1a202c" }}>
@@ -196,7 +223,7 @@ export default async function Home() {
           >
             <div
               style={{
-                backgroundImage: "url('/images/luna/photo_4_2026-10-07_10-32-46.jpg')",
+                backgroundImage: "url('/images/bella/photo_4_2026-10-07_10-32-46.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 minHeight: "300px",
@@ -299,7 +326,7 @@ export default async function Home() {
                     }}
                   >
                     <img
-                      src={puppy.image_url || puppyFallbackImages[index % puppyFallbackImages.length]}
+                      src={puppy.image_url || getPuppyImage(puppy.name, index)}
                       alt={puppy.name || "Yorkshire Terrier puppy"}
                       style={{
                         display: "block",
