@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import type { CSSProperties } from "react";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -6,7 +7,7 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-const linkStyle = {
+const linkStyle: CSSProperties = {
   color: "#ffffff",
   textDecoration: "none",
   marginLeft: "28px",
@@ -15,19 +16,19 @@ const linkStyle = {
   transition: "opacity 0.3s ease",
 };
 
-const testimonialStyle = {
+const testimonialStyle: CSSProperties = {
   backgroundColor: "#ffffff",
   padding: "32px",
   borderRadius: "16px",
   boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
   fontSize: "1.1rem",
-  lineHeight: "1.8",
+  lineHeight: 1.8,
   fontStyle: "italic",
   color: "#2d3748",
   borderLeft: "4px solid #d4a574",
 };
 
-const sectionTitleStyle = {
+const sectionTitleStyle: CSSProperties = {
   fontSize: "3rem",
   fontWeight: 700,
   marginBottom: "16px",
@@ -36,28 +37,26 @@ const sectionTitleStyle = {
   letterSpacing: "-0.5px",
 };
 
-const subtitleStyle = {
+const subtitleStyle: CSSProperties = {
   fontSize: "1.2rem",
   textAlign: "center",
   color: "#718096",
-  marginBottom: "48px",
-  maxWidth: "600px",
   margin: "0 auto 48px",
+  maxWidth: "600px",
 };
 
-const containerStyle = {
+const containerStyle: CSSProperties = {
   maxWidth: "1200px",
   margin: "0 auto",
   paddingLeft: "20px",
   paddingRight: "20px",
 };
 
-const puppyCardStyle = {
+const puppyCardStyle: CSSProperties = {
   background: "#ffffff",
   borderRadius: "20px",
   overflow: "hidden",
   boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
   cursor: "pointer",
 };
 
@@ -76,7 +75,6 @@ export default async function Home() {
 
   return (
     <main style={{ fontFamily: "'Segoe UI', 'Trebuchet MS', sans-serif", background: "#fafaf9", color: "#1a202c" }}>
-      {/* Header */}
       <header
         style={{
           backgroundColor: "#1a202c",
@@ -108,7 +106,7 @@ export default async function Home() {
                 href={item.href}
                 style={{
                   ...linkStyle,
-                  marginLeft: item === navItems[0] ? "0" : "28px",
+                  marginLeft: item === navItems[0] ? 0 : "28px",
                 }}
               >
                 {item.label}
@@ -118,7 +116,6 @@ export default async function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
       <section
         style={{
           backgroundImage: "linear-gradient(135deg, rgba(26, 32, 44, 0.7) 0%, rgba(107, 114, 128, 0.6) 100%), url('/images/puppy2.jpg')",
@@ -133,15 +130,7 @@ export default async function Home() {
           position: "relative",
         }}
       >
-        <div
-          style={{
-            position: "relative",
-            zIndex: 1,
-            color: "white",
-            maxWidth: "900px",
-            padding: "40px 20px",
-          }}
-        >
+        <div style={{ position: "relative", zIndex: 1, color: "white", maxWidth: "900px", padding: "40px 20px" }}>
           <h1
             style={{
               fontSize: "clamp(2.5rem, 8vw, 5rem)",
@@ -177,7 +166,6 @@ export default async function Home() {
               textDecoration: "none",
               fontWeight: 700,
               fontSize: "18px",
-              transition: "all 0.3s ease",
               boxShadow: "0 8px 24px rgba(212, 165, 116, 0.3)",
               border: "2px solid #d4a574",
             }}
@@ -187,7 +175,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* About Section */}
       <section id="about" style={{ padding: "120px 20px", backgroundColor: "#ffffff" }}>
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>About Tiny Paws Yorkies</h2>
@@ -214,13 +201,13 @@ export default async function Home() {
             />
 
             <div>
-              <p style={{ fontSize: "1.15rem", lineHeight: "1.9", color: "#4a5568", marginBottom: "20px" }}>
+              <p style={{ fontSize: "1.15rem", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
                 At Tiny Paws Yorkies, we're passionate about breeding exceptional Yorkshire Terriers with perfect health, vibrant temperament, and beautiful conformation.
               </p>
-              <p style={{ fontSize: "1.15rem", lineHeight: "1.9", color: "#4a5568", marginBottom: "20px" }}>
+              <p style={{ fontSize: "1.15rem", lineHeight: 1.9, color: "#4a5568", marginBottom: "20px" }}>
                 Every puppy is born from champion bloodlines, vet-checked from day one, vaccinated, microchipped, and given early socialization to ensure they're ready for their forever families.
               </p>
-              <p style={{ fontSize: "1.15rem", lineHeight: "1.9", color: "#4a5568" }}>
+              <p style={{ fontSize: "1.15rem", lineHeight: 1.9, color: "#4a5568" }}>
                 We provide lifetime breeder support and a health guarantee because we stand behind every puppy we raise.
               </p>
             </div>
@@ -228,7 +215,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
       <section style={{ padding: "120px 20px", backgroundColor: "#f7fafc" }}>
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>Why Choose Tiny Paws Yorkies</h2>
@@ -257,19 +243,17 @@ export default async function Home() {
                   borderRadius: "16px",
                   textAlign: "center",
                   boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
-                  transition: "transform 0.3s ease",
                 }}
               >
                 <div style={{ fontSize: "48px", marginBottom: "16px" }}>{item.icon}</div>
                 <h3 style={{ fontSize: "1.3rem", fontWeight: 700, marginBottom: "12px", color: "#1a202c" }}>{item.title}</h3>
-                <p style={{ color: "#718096", fontSize: "1rem", lineHeight: "1.6" }}>{item.desc}</p>
+                <p style={{ color: "#718096", fontSize: "1rem", lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Puppies Section */}
       <section
         id="puppies"
         style={{
@@ -278,7 +262,6 @@ export default async function Home() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundColor: "#2d3748",
-          backgroundBlendMode: "overlay",
           padding: "120px 20px",
         }}
       >
@@ -300,25 +283,7 @@ export default async function Home() {
               }}
             >
               {puppyList.map((puppy: any) => (
-                <article
-                  key={puppy.id}
-                  style={{
-                    ...puppyCardStyle,
-                    ":hover": {
-                      transform: "translateY(-8px)",
-                    },
-                  }}
-                  onMouseEnter={(e) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.transform = "translateY(-8px)";
-                    target.style.boxShadow = "0 20px 60px rgba(0,0,0,0.15)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.transform = "translateY(0)";
-                    target.style.boxShadow = "0 10px 40px rgba(0,0,0,0.08)";
-                  }}
-                >
+                <article key={puppy.id} style={puppyCardStyle}>
                   <div
                     style={{
                       position: "relative",
@@ -336,13 +301,6 @@ export default async function Home() {
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        transition: "transform 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.target as HTMLImageElement).style.transform = "scale(1.05)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.target as HTMLImageElement).style.transform = "scale(1)";
                       }}
                     />
                     <div
@@ -388,7 +346,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section style={{ backgroundColor: "#ffffff", padding: "120px 20px" }}>
         <div style={containerStyle}>
           <h2 style={sectionTitleStyle}>Happy Families</h2>
@@ -416,7 +373,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section
         id="contact"
         style={{
@@ -463,7 +419,6 @@ export default async function Home() {
                 textDecoration: "none",
                 fontWeight: 700,
                 fontSize: "16px",
-                transition: "all 0.3s ease",
                 boxShadow: "0 8px 24px rgba(212, 165, 116, 0.3)",
               }}
             >
@@ -482,7 +437,6 @@ export default async function Home() {
                 textDecoration: "none",
                 fontWeight: 700,
                 fontSize: "16px",
-                transition: "all 0.3s ease",
                 boxShadow: "0 8px 24px rgba(37, 211, 102, 0.3)",
               }}
             >
@@ -492,7 +446,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Floating WhatsApp Button */}
       <a
         href="https://wa.me/237679409897"
         target="_blank"
@@ -510,23 +463,11 @@ export default async function Home() {
           fontSize: "14px",
           boxShadow: "0 12px 40px rgba(37, 211, 102, 0.4)",
           zIndex: 50,
-          transition: "all 0.3s ease",
-        }}
-        onMouseEnter={(e) => {
-          const target = e.currentTarget as HTMLAnchorElement;
-          target.style.transform = "scale(1.1)";
-          target.style.boxShadow = "0 16px 50px rgba(37, 211, 102, 0.5)";
-        }}
-        onMouseLeave={(e) => {
-          const target = e.currentTarget as HTMLAnchorElement;
-          target.style.transform = "scale(1)";
-          target.style.boxShadow = "0 12px 40px rgba(37, 211, 102, 0.4)";
         }}
       >
         💬 WhatsApp
       </a>
 
-      {/* Footer */}
       <footer
         style={{
           backgroundColor: "#0f1419",
