@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { CSSProperties } from "react";
 
@@ -223,7 +224,7 @@ export default async function Home() {
       <section
         style={{
           background:
-            "linear-gradient(180deg, #fbf8f4 0%, rgba(251,248,244,0.95) 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,50 Q300,0 600,50 T1200,50 L1200,100 L0,100 Z%22 fill=%22%23f4f0ea%22 opacity=%220.1%22/></svg>')",
+            "linear-gradient(180deg, #fbf8f4 0%, rgba(251,248,244,0.95) 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,50 Q300,0 600,50 T1200,50 L1200,100 L0,100 Z%22 fill=%22%23f4eee8%22 /></svg>')",
           backgroundSize: "100% 100%, cover",
           padding: "80px 20px",
         }}
@@ -319,7 +320,7 @@ export default async function Home() {
         id="about"
         style={{
           background:
-            "linear-gradient(180deg, #fbf8f4 0%, #faf6f0 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><pattern id=%22dots%22 x=%220%22 y=%220%22 width=%2220%22 height=%2220%22 patternUnits=%22userSpaceOnUse%22><circle cx=%2210%22 cy=%2210%22 r=%221%22 fill=%22%23c9a46d%22 opacity=%220.04%22/></pattern></defs><rect width=%22100%22 height=%22100%22 fill=%22url(%23dots)%22/></svg>')",
+            "linear-gradient(180deg, #fbf8f4 0%, #faf6f0 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><pattern id=%22dots%22 x=%220%22 y=%220%22 width=%226%22 height=%226%22 patternUnits=%22userSpaceOnUse%22><circle cx=%221%22 cy=%221%22 r=%220.9%22 fill=%22%23d8c9af%22/></pattern></defs><rect width=%22100%22 height=%22100%22 fill=%22url(%23dots)%22 /></svg>')",
           backgroundSize: "100% 100%, 200px 200px",
           padding: "90px 20px",
         }}
@@ -375,7 +376,7 @@ export default async function Home() {
       <section
         style={{
           background:
-            "linear-gradient(180deg, #f0e7dc 0%, #ebe1d5 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,50 Q300,25 600,50 T1200,50 L1200,0 L0,0 Z%22 fill=%22%23c9a46d%22 opacity=%220.03%22/></svg>')",
+            "linear-gradient(180deg, #f0e7dc 0%, #ebe1d5 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,50 Q300,25 600,50 T1200,50 L1200,100 L0,100 Z%22 fill=%22%23e8dac1%22 /></svg>')",
           backgroundSize: "100% 100%, 100% 100%",
           padding: "90px 20px",
         }}
@@ -466,58 +467,64 @@ export default async function Home() {
               }}
             >
               {puppyList.map((puppy: any, index: number) => (
-                <article key={puppy.id} style={{ ...cardStyle, background: "#fffdf9" }}>
-                  <div style={{ position: "relative", height: "280px", backgroundColor: "#e6dfd3" }}>
-                    <img
-                      src={getPuppyImage(puppy.name, index)}
-                      alt={puppy.name || "Yorkshire Terrier puppy"}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "14px",
-                        right: "14px",
-                        backgroundColor: puppy.available ? "#3d7f59" : "#a25050",
-                        color: "#ffffff",
-                        padding: "8px 14px",
-                        borderRadius: "999px",
-                        fontSize: "0.72rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.06em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {puppy.available ? "Available" : "Sold"}
-                    </div>
-                  </div>
-
-                  <div style={{ padding: "22px 20px 24px" }}>
-                    <h3
-                      style={{
-                        margin: "0 0 14px",
-                        fontFamily: "Georgia, 'Times New Roman', serif",
-                        fontSize: "1.9rem",
-                        color: "#1b1a18",
-                      }}
-                    >
-                      {puppy.name}
-                    </h3>
-
-                    <div style={{ display: "grid", gap: "8px", marginBottom: "14px" }}>
-                      <p style={{ margin: 0, color: "#544f4b", fontSize: "1rem" }}>
-                        <strong style={{ color: "#1b1a18" }}>Age:</strong> {puppy.age}
-                      </p>
-                      <p style={{ margin: 0, color: "#544f4b", fontSize: "1rem" }}>
-                        <strong style={{ color: "#1b1a18" }}>Price:</strong> ${puppy.price?.toLocaleString() || "Contact"}
-                      </p>
+                <Link
+                  key={puppy.id}
+                  href={`/puppies/${encodeURIComponent(puppy.id)}`}
+                  style={{ textDecoration: "none", color: "inherit", display: "block" }}
+                >
+                  <article style={{ ...cardStyle, background: "#fffdf9", cursor: "pointer", height: "100%" }}>
+                    <div style={{ position: "relative", height: "280px", backgroundColor: "#e6dfd3" }}>
+                      <img
+                        src={getPuppyImage(puppy.name, index)}
+                        alt={puppy.name || "Yorkshire Terrier puppy"}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "14px",
+                          right: "14px",
+                          backgroundColor: puppy.available ? "#3d7f59" : "#a25050",
+                          color: "#ffffff",
+                          padding: "8px 14px",
+                          borderRadius: "999px",
+                          fontSize: "0.72rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.06em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {puppy.available ? "Available" : "Sold"}
+                      </div>
                     </div>
 
-                    <p style={{ margin: 0, color: "#66615d", fontSize: "0.9rem", lineHeight: 1.7, borderTop: "1px solid #ece3d8", paddingTop: "12px" }}>
-                      Health certified • Vaccinated • Microchipped
-                    </p>
-                  </div>
-                </article>
+                    <div style={{ padding: "22px 20px 24px" }}>
+                      <h3
+                        style={{
+                          margin: "0 0 14px",
+                          fontFamily: "Georgia, 'Times New Roman', serif",
+                          fontSize: "1.9rem",
+                          color: "#1b1a18",
+                        }}
+                      >
+                        {puppy.name}
+                      </h3>
+
+                      <div style={{ display: "grid", gap: "8px", marginBottom: "14px" }}>
+                        <p style={{ margin: 0, color: "#544f4b", fontSize: "1rem" }}>
+                          <strong style={{ color: "#1b1a18" }}>Age:</strong> {puppy.age}
+                        </p>
+                        <p style={{ margin: 0, color: "#544f4b", fontSize: "1rem" }}>
+                          <strong style={{ color: "#1b1a18" }}>Price:</strong> ${puppy.price?.toLocaleString() || "Contact"}
+                        </p>
+                      </div>
+
+                      <p style={{ margin: 0, color: "#66615d", fontSize: "0.9rem", lineHeight: 1.7, borderTop: "1px solid #ece3d8", paddingTop: "12px" }}>
+                        Health certified • Vaccinated • Microchipped
+                      </p>
+                    </div>
+                  </article>
+                </Link>
               ))}
             </div>
           )}
@@ -528,7 +535,7 @@ export default async function Home() {
         style={{
           backgroundColor: "#fbf8f4",
           background:
-            "linear-gradient(180deg, #fbf8f4 0%, #faf6f0 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,30 Q300,60 600,30 T1200,30 L1200,100 L0,100 Z%22 fill=%22%23c9a46d%22 opacity=%220.03%22/></svg>')",
+            "linear-gradient(180deg, #fbf8f4 0%, #faf6f0 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 100%22><path d=%22M0,30 Q300,60 600,30 T1200,30 L1200,100 L0,100 Z%22 fill=%22%23f3ebdf%22 /></svg>')",
           backgroundSize: "100% 100%, 100% 100%",
           padding: "90px 20px",
         }}
