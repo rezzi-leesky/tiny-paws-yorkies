@@ -1,5 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import PuppyGallery from "@/components/PuppyGallery";
+import InquiryForm from "@/components/InquiryForm";
 import type { CSSProperties } from "react";
 
 const lunaImages = [
@@ -27,6 +29,21 @@ const containerStyle: CSSProperties = {
   margin: "0 auto",
   paddingLeft: "20px",
   paddingRight: "20px",
+};
+
+const buttonStyle: CSSProperties = {
+  display: "inline-block",
+  textDecoration: "none",
+  background: "#c9a46d",
+  color: "#1a1a18",
+  padding: "14px 30px",
+  borderRadius: "999px",
+  fontWeight: 700,
+  letterSpacing: "0.04em",
+  textTransform: "uppercase",
+  fontSize: "0.82rem",
+  boxShadow: "0 12px 22px rgba(201, 164, 109, 0.25)",
+  textAlign: "center" as const,
 };
 
 const getPuppyImages = (puppyName: string) => {
@@ -143,57 +160,7 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
             }}
           >
             <div>
-              <div
-                style={{
-                  position: "relative",
-                  height: "520px",
-                  backgroundColor: "#e6dfd3",
-                  borderRadius: "28px",
-                  overflow: "hidden",
-                  boxShadow: "0 22px 60px rgba(32,35,28,0.18)",
-                  marginBottom: "18px",
-                }}
-              >
-                <img
-                  src={puppyImages[0]}
-                  alt={puppy.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.1))",
-                  }}
-                />
-              </div>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))",
-                  gap: "12px",
-                }}
-              >
-                {puppyImages.map((image: string, idx: number) => (
-                  <div
-                    key={`${puppy.id}-${idx}`}
-                    style={{
-                      height: "88px",
-                      borderRadius: "14px",
-                      overflow: "hidden",
-                      border: idx === 0 ? "2px solid #c9a46d" : "1px solid rgba(25,25,24,0.08)",
-                      boxShadow: "0 8px 18px rgba(22, 22, 20, 0.08)",
-                    }}
-                  >
-                    <img
-                      src={image}
-                      alt={`${puppy.name} photo ${idx + 1}`}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  </div>
-                ))}
-              </div>
+              <PuppyGallery images={puppyImages} puppyName={puppy.name} />
             </div>
 
             <div>
@@ -294,23 +261,7 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
                   gap: "12px",
                 }}
               >
-                <a
-                  href="mailto:info@tinypawsyorkies.com"
-                  style={{
-                    display: "inline-block",
-                    textDecoration: "none",
-                    background: "#c9a46d",
-                    color: "#1a1a18",
-                    padding: "14px 30px",
-                    borderRadius: "999px",
-                    fontWeight: 700,
-                    letterSpacing: "0.04em",
-                    textTransform: "uppercase",
-                    fontSize: "0.82rem",
-                    boxShadow: "0 12px 22px rgba(201, 164, 109, 0.25)",
-                    textAlign: "center",
-                  }}
-                >
+                <a href="mailto:info@tinypawsyorkies.com" style={buttonStyle}>
                   Email us
                 </a>
                 <a
@@ -318,18 +269,10 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    display: "inline-block",
-                    textDecoration: "none",
+                    ...buttonStyle,
                     background: "#25D366",
                     color: "#fff",
-                    padding: "14px 30px",
-                    borderRadius: "999px",
-                    fontWeight: 700,
-                    letterSpacing: "0.04em",
-                    textTransform: "uppercase",
-                    fontSize: "0.82rem",
                     boxShadow: "0 12px 22px rgba(37, 211, 102, 0.25)",
-                    textAlign: "center",
                   }}
                 >
                   WhatsApp
@@ -350,17 +293,21 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
             }}
           >
             {[
-              "Health certified by veterinarian",
-              "Vaccinated and dewormed",
-              "Microchipped for safety",
-              "Socialized from day one",
-              "Raised in a calm, loving home",
-              "Lifetime breeder support included",
+              "✓ Health certified by veterinarian",
+              "✓ Vaccinated and dewormed",
+              "✓ Microchipped for safety",
+              "✓ Socialized from day one",
+              "✓ Raised in a calm, loving home",
+              "✓ Lifetime breeder support included",
             ].map((item, idx) => (
               <div
                 key={idx}
                 style={{
-                  ...({ background: "#fffdf9", border: "1px solid rgba(25,25,24,0.08)", borderRadius: "18px", padding: "24px 20px", boxShadow: "0 12px 32px rgba(22, 22, 20, 0.08)" }),
+                  background: "#fffdf9",
+                  border: "1px solid rgba(25,25,24,0.08)",
+                  borderRadius: "18px",
+                  padding: "24px 20px",
+                  boxShadow: "0 12px 32px rgba(22, 22, 20, 0.08)",
                   color: "#4b4743",
                   lineHeight: 1.7,
                   fontSize: "1rem",
@@ -370,6 +317,12 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "60px 20px" }}>
+        <div style={containerStyle}>
+          <InquiryForm puppyName={puppy.name} puppyId={puppy.id} />
         </div>
       </section>
 
@@ -393,7 +346,7 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
             We would love to help you bring this sweet companion home and answer any questions about temperament, care, and next steps.
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
-            <a href="mailto:info@tinypawsyorkies.com" style={classicButtonStyle}>
+            <a href="mailto:info@tinypawsyorkies.com" style={buttonStyle}>
               Email us
             </a>
             <a
@@ -401,7 +354,10 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                ...({ display: "inline-block", textDecoration: "none", background: "#25D366", color: "#fff", padding: "14px 30px", borderRadius: "999px", fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase", fontSize: "0.82rem", boxShadow: "0 12px 22px rgba(37, 211, 102, 0.25)" }),
+                ...buttonStyle,
+                background: "#25D366",
+                color: "#fff",
+                boxShadow: "0 12px 22px rgba(37, 211, 102, 0.25)",
               }}
             >
               WhatsApp now
@@ -424,6 +380,3 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
     </main>
   );
 }
-
-
-
