@@ -86,14 +86,6 @@ const classicButtonStyle: CSSProperties = {
   boxShadow: "0 12px 22px rgba(201, 164, 109, 0.25)",
 };
 
-const featuredCardStyle: CSSProperties = {
-  background: "#fffdf9",
-  border: "1px solid rgba(25, 25, 24, 0.08)",
-  borderRadius: "20px",
-  overflow: "hidden",
-  boxShadow: "0 16px 48px rgba(22, 22, 20, 0.12)",
-};
-
 export default async function Home() {
   const { data: puppies, error } = await supabase.from("puppies").select();
 
@@ -246,7 +238,7 @@ export default async function Home() {
               { name: "Max", image: maxImages[0], desc: "Spirited & playful" },
               { name: "Bella", image: bellaImages[0], desc: "Gentle & loving" },
             ].map((pup) => (
-              <article key={pup.name} style={featuredCardStyle}>
+              <article key={pup.name} style={{ ...cardStyle, boxShadow: "0 16px 48px rgba(22, 22, 20, 0.12)" }}>
                 <div
                   style={{
                     position: "relative",
@@ -472,7 +464,15 @@ export default async function Home() {
                   href={`/puppies/${encodeURIComponent(puppy.id)}`}
                   style={{ textDecoration: "none", color: "inherit", display: "block" }}
                 >
-                  <article style={{ ...cardStyle, background: "#fffdf9", cursor: "pointer", height: "100%" }}>
+                  <article
+                    style={{
+                      ...cardStyle,
+                      background: "#fffdf9",
+                      cursor: "pointer",
+                      height: "100%",
+                      transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                    }}
+                  >
                     <div style={{ position: "relative", height: "280px", backgroundColor: "#e6dfd3" }}>
                       <img
                         src={getPuppyImage(puppy.name, index)}
@@ -495,6 +495,24 @@ export default async function Home() {
                         }}
                       >
                         {puppy.available ? "Available" : "Sold"}
+                      </div>
+
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: "14px",
+                          bottom: "14px",
+                          background: "rgba(17, 15, 13, 0.7)",
+                          color: "#f7f1e6",
+                          borderRadius: "999px",
+                          padding: "8px 12px",
+                          fontSize: "0.7rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        View profile
                       </div>
                     </div>
 
@@ -662,3 +680,6 @@ export default async function Home() {
     </main>
   );
 }
+
+
+

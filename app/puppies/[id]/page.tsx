@@ -39,12 +39,11 @@ const getPuppyImages = (puppyName: string) => {
 
 const buildDescription = (name: string) => {
   const cleanName = name || "This puppy";
-  return `${cleanName} is a sweet, well-socialized Yorkshire Terrier raised in a loving home environment. He or she is healthy, confident, and ready to become a cherished family companion with a gentle temperament and adorable personality.`;
+  return `${cleanName} is a sweet, well-socialized Yorkshire Terrier raised in a loving home environment. He or she is healthy, confident, and ready to become a cherished family companion with a gentle temperament, bright personality, and cute little character.`;
 };
 
 export default async function PuppyDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-
   const { data: puppy, error } = await supabase.from("puppies").select().eq("id", id).single();
 
   if (error || !puppy) {
@@ -60,6 +59,12 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
 
   const puppyImages = getPuppyImages(puppy.name);
   const description = puppy.description || buildDescription(puppy.name);
+  const facts = [
+    { label: "Age", value: puppy.age },
+    { label: "Price", value: `$${puppy.price?.toLocaleString() || "Contact"}` },
+    ...(puppy.gender ? [{ label: "Gender", value: puppy.gender }] : []),
+    ...(puppy.color ? [{ label: "Color", value: puppy.color }] : []),
+  ];
 
   return (
     <main
@@ -104,13 +109,36 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
         </div>
       </header>
 
-      <section style={{ padding: "50px 20px" }}>
+      <section style={{ padding: "52px 20px 28px" }}>
         <div style={containerStyle}>
           <div
             style={{
+              background: "linear-gradient(135deg, rgba(201,164,109,0.12), rgba(255,255,255,0.7))",
+              border: "1px solid rgba(25,25,24,0.08)",
+              borderRadius: "26px",
+              padding: "22px 18px",
+              marginBottom: "28px",
+            }}
+          >
+            <p
+              style={{
+                margin: 0,
+                color: "#7a6d5d",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+              }}
+            >
+              Puppy profile
+            </p>
+          </div>
+
+          <div
+            style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "40px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "36px",
               alignItems: "start",
             }}
           >
@@ -118,12 +146,12 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
               <div
                 style={{
                   position: "relative",
-                  height: "500px",
+                  height: "520px",
                   backgroundColor: "#e6dfd3",
-                  borderRadius: "20px",
+                  borderRadius: "28px",
                   overflow: "hidden",
-                  boxShadow: "0 20px 50px rgba(32,35,28,0.18)",
-                  marginBottom: "20px",
+                  boxShadow: "0 22px 60px rgba(32,35,28,0.18)",
+                  marginBottom: "18px",
                 }}
               >
                 <img
@@ -131,67 +159,71 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
                   alt={puppy.name}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.1))",
+                  }}
+                />
               </div>
 
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))",
-                  gap: "10px",
+                  gap: "12px",
                 }}
               >
                 {puppyImages.map((image: string, idx: number) => (
                   <div
                     key={`${puppy.id}-${idx}`}
                     style={{
-                      height: "85px",
-                      borderRadius: "12px",
+                      height: "88px",
+                      borderRadius: "14px",
                       overflow: "hidden",
-                      border: "2px solid #c9a46d",
-                      boxShadow: "0 4px 12px rgba(22, 22, 20, 0.08)",
+                      border: idx === 0 ? "2px solid #c9a46d" : "1px solid rgba(25,25,24,0.08)",
+                      boxShadow: "0 8px 18px rgba(22, 22, 20, 0.08)",
                     }}
                   >
-                    <img src={image} alt={`${puppy.name} photo ${idx + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img
+                      src={image}
+                      alt={`${puppy.name} photo ${idx + 1}`}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "24px",
-                }}
-              >
-                <div>
-                  <h1
-                    style={{
-                      margin: "0 0 12px",
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      fontSize: "3.2rem",
-                      color: "#1b1a18",
-                    }}
-                  >
-                    {puppy.name}
-                  </h1>
-                  <div
-                    style={{
-                      backgroundColor: puppy.available ? "#3d7f59" : "#a25050",
-                      color: "#ffffff",
-                      padding: "8px 14px",
-                      borderRadius: "999px",
-                      fontSize: "0.72rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      display: "inline-block",
-                    }}
-                  >
-                    {puppy.available ? "Available" : "Sold"}
-                  </div>
+              <div style={{ marginBottom: "24px" }}>
+                <h1
+                  style={{
+                    margin: "0 0 16px",
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontSize: "clamp(2.6rem, 6vw, 4rem)",
+                    color: "#1b1a18",
+                    lineHeight: 1,
+                  }}
+                >
+                  {puppy.name}
+                </h1>
+
+                <div
+                  style={{
+                    display: "inline-block",
+                    backgroundColor: puppy.available ? "#3d7f59" : "#a25050",
+                    color: "#ffffff",
+                    padding: "10px 16px",
+                    borderRadius: "999px",
+                    fontSize: "0.72rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {puppy.available ? "Available" : "Sold"}
                 </div>
               </div>
 
@@ -199,8 +231,8 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
                 style={{
                   background: "#fffdf9",
                   border: "1px solid rgba(25, 25, 24, 0.08)",
-                  borderRadius: "18px",
-                  padding: "28px 24px",
+                  borderRadius: "22px",
+                  padding: "26px 22px",
                   marginBottom: "24px",
                   boxShadow: "0 12px 32px rgba(22, 22, 20, 0.08)",
                 }}
@@ -208,77 +240,27 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                    gap: "24px",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+                    gap: "18px",
                   }}
                 >
-                  <div>
-                    <p
-                      style={{
-                        margin: "0 0 8px",
-                        color: "#c9a46d",
-                        fontSize: "0.9rem",
-                        letterSpacing: "0.08em",
-                        textTransform: "uppercase",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Age
-                    </p>
-                    <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 600, color: "#1b1a18" }}>{puppy.age}</p>
-                  </div>
-
-                  <div>
-                    <p
-                      style={{
-                        margin: "0 0 8px",
-                        color: "#c9a46d",
-                        fontSize: "0.9rem",
-                        letterSpacing: "0.08em",
-                        textTransform: "uppercase",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Price
-                    </p>
-                    <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 600, color: "#1b1a18" }}>${puppy.price?.toLocaleString() || "Contact"}</p>
-                  </div>
-
-                  {puppy.gender && (
-                    <div>
+                  {facts.map((fact) => (
+                    <div key={fact.label}>
                       <p
                         style={{
                           margin: "0 0 8px",
                           color: "#c9a46d",
-                          fontSize: "0.9rem",
-                          letterSpacing: "0.08em",
+                          fontSize: "0.78rem",
+                          letterSpacing: "0.09em",
                           textTransform: "uppercase",
-                          fontWeight: 600,
+                          fontWeight: 700,
                         }}
                       >
-                        Gender
+                        {fact.label}
                       </p>
-                      <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 600, color: "#1b1a18" }}>{puppy.gender}</p>
+                      <p style={{ margin: 0, fontSize: "1.15rem", fontWeight: 700, color: "#1b1a18" }}>{fact.value}</p>
                     </div>
-                  )}
-
-                  {puppy.color && (
-                    <div>
-                      <p
-                        style={{
-                          margin: "0 0 8px",
-                          color: "#c9a46d",
-                          fontSize: "0.9rem",
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Color
-                      </p>
-                      <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 600, color: "#1b1a18" }}>{puppy.color}</p>
-                    </div>
-                  )}
+                  ))}
                 </div>
               </div>
 
@@ -286,55 +268,32 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
                 style={{
                   background: "#fffdf9",
                   border: "1px solid rgba(25, 25, 24, 0.08)",
-                  borderRadius: "18px",
-                  padding: "28px 24px",
-                  marginBottom: "24px",
+                  borderRadius: "22px",
+                  padding: "26px 22px",
+                  marginBottom: "26px",
                   boxShadow: "0 12px 32px rgba(22, 22, 20, 0.08)",
                 }}
               >
                 <h3
                   style={{
-                    margin: "0 0 16px",
+                    margin: "0 0 14px",
                     fontFamily: "Georgia, 'Times New Roman', serif",
-                    fontSize: "1.5rem",
+                    fontSize: "1.7rem",
                     color: "#1b1a18",
                   }}
                 >
                   About {puppy.name}
                 </h3>
-                <p style={{ margin: 0, color: "#5e5a54", lineHeight: 1.8, fontSize: "1.05rem" }}>{description}</p>
+                <p style={{ margin: 0, color: "#5e5a54", lineHeight: 1.8, fontSize: "1.04rem" }}>{description}</p>
               </div>
 
               <div
                 style={{
-                  background: "#fffdf9",
-                  border: "1px solid rgba(25, 25, 24, 0.08)",
-                  borderRadius: "18px",
-                  padding: "28px 24px",
-                  marginBottom: "24px",
-                  boxShadow: "0 12px 32px rgba(22, 22, 20, 0.08)",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
+                  gap: "12px",
                 }}
               >
-                <h3
-                  style={{
-                    margin: "0 0 16px",
-                    fontFamily: "Georgia, 'Times New Roman', serif",
-                    fontSize: "1.5rem",
-                    color: "#1b1a18",
-                  }}
-                >
-                  Health & Care
-                </h3>
-                <ul style={{ margin: 0, paddingLeft: "20px", color: "#5e5a54", lineHeight: 1.8 }}>
-                  <li style={{ marginBottom: "8px" }}>Health certified by veterinarian</li>
-                  <li style={{ marginBottom: "8px" }}>Vaccinated and dewormed</li>
-                  <li style={{ marginBottom: "8px" }}>Microchipped for safety</li>
-                  <li style={{ marginBottom: "8px" }}>Socialized from day one</li>
-                  <li>Lifetime breeder support included</li>
-                </ul>
-              </div>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                 <a
                   href="mailto:info@tinypawsyorkies.com"
                   style={{
@@ -381,28 +340,75 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
         </div>
       </section>
 
-      <a
-        href="https://wa.me/237679409897"
-        target="_blank"
-        rel="noopener noreferrer"
+      <section style={{ padding: "0 20px 90px" }}>
+        <div style={containerStyle}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "24px",
+            }}
+          >
+            {[
+              "Health certified by veterinarian",
+              "Vaccinated and dewormed",
+              "Microchipped for safety",
+              "Socialized from day one",
+              "Raised in a calm, loving home",
+              "Lifetime breeder support included",
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                style={{
+                  ...({ background: "#fffdf9", border: "1px solid rgba(25,25,24,0.08)", borderRadius: "18px", padding: "24px 20px", boxShadow: "0 12px 32px rgba(22, 22, 20, 0.08)" }),
+                  color: "#4b4743",
+                  lineHeight: 1.7,
+                  fontSize: "1rem",
+                }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
         style={{
-          position: "fixed",
-          bottom: "22px",
-          right: "22px",
-          backgroundColor: "#25D366",
-          color: "#fff",
-          padding: "12px 18px",
-          borderRadius: "999px",
-          textDecoration: "none",
-          fontWeight: 700,
-          fontSize: "0.8rem",
-          letterSpacing: "0.04em",
-          boxShadow: "0 16px 32px rgba(37, 211, 102, 0.3)",
-          zIndex: 100,
+          backgroundImage:
+            "linear-gradient(135deg, rgba(17,15,13,0.86) 0%, rgba(52,48,44,0.82) 100%), url('/images/luna/photo_3_2026-10-07_10-46-30.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          color: "#f7f1e6",
+          padding: "90px 20px",
+          textAlign: "center",
         }}
       >
-        WhatsApp
-      </a>
+        <div style={containerStyle}>
+          <h2 style={{ margin: "0 0 18px", fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(2.2rem, 5vw, 3.2rem)" }}>
+            Ready to meet {puppy.name}?
+          </h2>
+          <p style={{ maxWidth: "640px", margin: "0 auto 30px", lineHeight: 1.8, fontSize: "1.08rem", color: "rgba(255,255,255,0.8)" }}>
+            We would love to help you bring this sweet companion home and answer any questions about temperament, care, and next steps.
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
+            <a href="mailto:info@tinypawsyorkies.com" style={classicButtonStyle}>
+              Email us
+            </a>
+            <a
+              href="https://wa.me/237679409897"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                ...({ display: "inline-block", textDecoration: "none", background: "#25D366", color: "#fff", padding: "14px 30px", borderRadius: "999px", fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase", fontSize: "0.82rem", boxShadow: "0 12px 22px rgba(37, 211, 102, 0.25)" }),
+              }}
+            >
+              WhatsApp now
+            </a>
+          </div>
+        </div>
+      </section>
 
       <footer
         style={{
@@ -418,3 +424,6 @@ export default async function PuppyDetail({ params }: { params: Promise<{ id: st
     </main>
   );
 }
+
+
+
